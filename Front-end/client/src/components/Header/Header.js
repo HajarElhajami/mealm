@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Search, Menu, X, Wrench, Plug, PaintRoller, TreePine, Truck, Flame } from "lucide-react";
 import { motion } from "framer-motion";
 import img1 from "../Image/1.png";
+
 const services = [
   { name: "سباك", icon: Wrench, link: "/plumber" },
   { name: "كهربائي", icon: Plug, link: "/electrician" },

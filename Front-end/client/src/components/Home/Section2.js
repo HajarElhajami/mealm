@@ -4,7 +4,7 @@ import { ShieldCheck, Headset, CheckCircle } from "lucide-react";
 
 export default function Features() {
   return (
-    <div className="relative bg-gradient-to-br from-[#406F67] to-[#406F67] py-16 px-6 md:px-20">
+    <div className="relative bg-gradient-to-br from-[#406F67] to-[#406F67] py-9 px-6 md:px-20">
       <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: "url('/images/background-pattern.svg')" }}></div>
 
       <div className="max-w-5xl mx-auto text-center relative">
@@ -12,11 +12,11 @@ export default function Features() {
            رضاكم هو أولويتنا  
         </h2>
         <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-          خدمات عالية الجودة، دعم متواصل، وراحة تامة، لأنكم تستحقون الأفضل!  
+          خدمات عالية الجودة، دعم متواصل، وراحة تامة، لأنكم تستحقون الأفضل 
         </p>
       </div>
 
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-7xl mx-auto mt-12 relative">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto mt-10 relative">
         <div className="glass-card">
           <ShieldCheck className="icon-style text-blue-500" />
           <h3 className="card-title">المهام المعتمدة</h3>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper";
 import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";

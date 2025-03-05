@@ -3,7 +3,7 @@
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
   border-radius: 30px;
-  padding: 40px;
+  padding: 30px;
   text-align: center;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
@@ -12,7 +12,7 @@
 .glass-card:hover {
   transform: translateY(-15px) scale(1.05);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
-  background: rgba(255, 255, 255, 0.2); /* تأثير تغيير الخلفية */
+  background: rgba(255, 255, 255, 0.2); 
 }
 
 .icon-style {
@@ -23,7 +23,7 @@
 }
 
 .glass-card:hover .icon-style {
-  transform: rotate(20deg) scale(1.2); /* دوران مع تكبير الأيقونة */
+  transform: rotate(20deg) scale(1.2); 
 }
 
 .card-title {
@@ -33,7 +33,7 @@
   margin-bottom: 15px;
   letter-spacing: 1.5px;
   text-transform: capitalize;
-  font-family: 'Poppins', sans-serif; /* استخدام خط أنيق */
+  font-family: 'Poppins', sans-serif; 
 }
 
 .card-text {
@@ -44,7 +44,7 @@
 }
 
 .card-text:hover {
-  color: #fff; /* تغيير لون النص عند التحويم */
+  color: #fff;
 }
 
 .glass-card span {
@@ -57,6 +57,7 @@
   text-transform: uppercase;
   letter-spacing: 0.8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: 55%;
 }
 
   

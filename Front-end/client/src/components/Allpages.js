@@ -22,6 +22,7 @@ import LeakRepair from './PagesPlumber/LeakRepair'
 import WaterSystems from './PagesPlumber/WaterSystems'
 import Layoute1 from "./Layoute1";
 import Rojester from './Pages/Login/Rogester'
+import Partnership from './Pages/Partnership/Partnership'
 
 
 function Allpages() {
@@ -52,6 +53,7 @@ function Allpages() {
            <Route path="Drainage" element={<Drainage />} />
            <Route path="LeakRepair" element={<LeakRepair />} />
            <Route path="WaterSystems" element={<WaterSystems />} />
+           <Route path="partnership" element={<Partnership />} />
 
 
            </Route>
