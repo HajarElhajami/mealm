@@ -213,22 +213,22 @@ const ThreeScene = () => {
     camera.position.set(70, 30, 5);
     camera.lookAt(new THREE.Vector3());
 
-    // إضافة ضوء القمر
-    const moonLight = new THREE.PointLight(0xffffff, 2, 150);
-    scene.add(moonLight);
+    // // إضافة ضوء القمر
+    // const moonLight = new THREE.PointLight(0xffffff, 2, 150);
+    // scene.add(moonLight);
 
-    // إنشاء القمر
-    const moonGeometry = new THREE.SphereGeometry(8, 32, 32);
-    const moonMaterial = new THREE.MeshPhongMaterial({
-      color: 0xffffff, 
-      emissive: 0xffffff, 
-      emissiveIntensity: 1.8, 
-      shininess: 25,
-    });
-    const moon = new THREE.Mesh(moonGeometry, moonMaterial);
-    moon.position.set(-9, 1, -6.5);
-    scene.add(moon);
-    moonLight.position.copy(moon.position).add(new THREE.Vector3(0, 4, 0));
+    // // إنشاء القمر
+    // const moonGeometry = new THREE.SphereGeometry(8, 32, 32);
+    // const moonMaterial = new THREE.MeshPhongMaterial({
+    //   color: 0xffffff, 
+    //   emissive: 0xffffff, 
+    //   emissiveIntensity: 1.8, 
+    //   shininess: 25,
+    // });
+    // const moon = new THREE.Mesh(moonGeometry, moonMaterial);
+    // moon.position.set(-9, 1, -6.5);
+    // scene.add(moon);
+    // moonLight.position.copy(moon.position).add(new THREE.Vector3(0, 4, 0));
 
     // إنشاء الأرضية بتدرج الألوان
     const terrainGeometry = new THREE.PlaneGeometry(150, 150, 120, 120);

@@ -141,9 +141,10 @@ const Gardener = () => {
       />
 
       <div className="relative z-10">
-        <div className="mb-20 max-w-7xl mx-auto grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-7">
-          {["زراعة النباتات والأشجار", "العناية بالنباتات", "تقليم الأشجار والشجيرات", "تصميم الحدائق", "تركيب أنظمة الري", "تنظيف الحدائق", "صيانة المسطحات الخضراء", "تزيين الحدائق", "مكافحة الأمراض الشجيرات", "الخدمات الإضافية"].map((text, i) => (
-            <Link key={i} to="/Service" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-3 sm:px-3 px-5 text-center text-lg md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+      <div className="mb-10 max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {["زراعة النباتات والأشجار", "العناية بالنباتات", "تقليم الأشجار والشجيرات", "تصميم الحدائق", "تركيب أنظمة الري", "تنظيف الحدائق", "صيانة المسطحات الخضراء", "تزيين الحدائق", "مكافحة الأمراض الشجيرات", "الخدمات الإضافية"].map((text, i) => (
+            <Link key={i} to="/Service"
+              className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
               {text}
             </Link>
           ))}

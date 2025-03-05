@@ -1,63 +1,3 @@
-// import { Link } from "react-router-dom";
-
-
-
-
-// function Header1() {
-//   return (
-//     <div>
-//     <header dir="rtl" className="flex items-center font-bold justify-around py-4 px-6 w-full">
-//       <Link to="/" className="text-4xl hover:text-secondary text-primaryDarkest text">
-//         معلم
-//       </Link>
-
-//       <nav className="hidden md:flex space-x-8 gap-10 items-center">
-//         <Link  to="/l1/services" className="text-[18px] text-primaryDarkest hover:text-secondary">الخدمات</Link>
-//         <div>
-//         <Link to="/l1/login" className="text-[18px] text-primaryDarkest hover:text-secondary">تسجيل الدخول</Link>
-//         <span className="text-[18px] text-center text-primaryDarkest"> / </span>
-//         <Link to="/l1/rogester" className="text-[18px]  text-primaryDarkest hover:text-secondary">التسجيل</Link>
-//         </div>
-//         <Link
-//           to="/l1/BecomeTasker"
-//           className="text-[18px] border border-secondary text-primaryDarkest px-4 py-2 rounded-lg hover:bg-primaryDarkest hover:text-white transition"
-//         >
-//           كن من العاملين في المهام
-//         </Link>
-//       </nav>
-
-//     </header>
-//     <hr className="border-[#94D1C3]" />
-
-    
-//     </div>
-//   );
-// }
-
-// export default Header1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 import { useState } from "react";
@@ -89,13 +29,9 @@ function Header1() {
 
 <header dir="rtl" className="flex items-center font-bold justify-between py-4 px-6 w-full relative">
         <Link to="/" className="text-3xl hover:text-secondary text-primaryDarkest">معلم</Link>
-        
-        {/* زر القائمة (هامبرغر) للجوال */}
-        <button className="md:hidden text-primaryDarkest" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button className="md:hidden text-primaryDarkest" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X size={30} /> : <Menu size={30} />}
         </button>
-
-        {/* القائمة المنسدلة للجوال */}
         {isMenuOpen && (
           <div className="absolute top-16 right-0 w-64 bg-white shadow-lg rounded-lg z-50 p-4 md:hidden">
             <nav className="flex flex-col space-y-4">
@@ -121,8 +57,6 @@ function Header1() {
             </nav>
           </div>
         )}
-
-        {/* الروابط العادية على الحاسوب */}
         <nav className="hidden md:flex space-x-8 gap-10 items-center">
           <Link to="/l1/services" className="text-[16px] text-primaryDarkest hover:text-secondary">الخدمات </Link>
           <div>
@@ -139,62 +73,8 @@ function Header1() {
         </nav>
       </header>
       <hr className="border-[#94D1C3]" />
-
-
-
-
-
-
-
     </>
-    // <div>
-    //   <header dir="rtl" className="flex items-center font-bold justify-between py-4 px-6 w-full relative">
-    //     <Link to="/" className="text-4xl hover:text-secondary text-primaryDarkest">
-    //       معلم
-    //     </Link>
 
-    //     {/* قائمة الهامبرغر للأجهزة الصغيرة */}
-    //     <div className="md:hidden">
-    //       <button onClick={() => setIsOpen(!isOpen)} className="text-primaryDarkest">
-    //         <Menu size={32} />
-    //       </button>
-    //     </div>
-
-    //     {/* روابط التنقل للحاسوب */}
-    //     <nav className=" md:flex space-x-8 gap-10 items-center ">
-        
-    //       <Link to="/l1/services" className="text-[18px] text-primaryDarkest hover:text-secondary">الخدمات</Link>
-    //       <div>
-    //         <Link to="/l1/login" className="text-[18px] text-primaryDarkest hover:text-secondary">تسجيل الدخول</Link>
-    //         <span className="text-[18px] text-center text-primaryDarkest"> / </span>
-    //         <Link to="/l1/rogester" className="text-[18px] text-primaryDarkest hover:text-secondary">التسجيل</Link>
-    //       </div>
-    //       <Link
-    //         to="/l1/BecomeTasker"
-    //         className="text-[18px] border border-secondary text-primaryDarkest px-4 py-2 rounded-lg hover:bg-primaryDarkest hover:text-white transition"
-    //       >
-    //         كن من العاملين في المهام
-    //       </Link>
-    //     </nav>
-
-    //     {/* قائمة الهامبرغر عند الفتح */}
-    //     {isOpen && (
-    //       <div className="absolute top-16 right-4 bg-white shadow-lg rounded-lg p-4 w-56 z-50 md:hidden">
-            
-    //         <Link to="/l1/services" className="block text-[18px] text-primaryDarkest hover:text-secondary py-2">الخدمات</Link>
-    //         <Link to="/l1/login" className="block text-[18px] text-primaryDarkest hover:text-secondary py-2">تسجيل الدخول</Link>
-    //         <Link to="/l1/rogester" className="block text-[18px] text-primaryDarkest hover:text-secondary py-2">التسجيل</Link>
-    //         <Link to="/l1/BecomeTasker" className="block text-[18px] border border-secondary text-primaryDarkest px-4 py-2 rounded-lg hover:bg-primaryDarkest hover:text-white transition mt-2 text-center">
-    //           كن من العاملين في المهام
-    //         </Link>
-    //       </div>
-    //     )}
-    //   </header>
-    //   <hr className="border-[#94D1C3]" />
-    // </div>
-
-
-   
   );
 }
 

@@ -106,9 +106,9 @@ import ThreeScene from "./ThreeScene";
 
 function Rojester() {
   return (
-    <div className="h-screen w-screen overflow-hidden relative md:pt-[4%] pt-[10%] pl-8 md:pl-20 container">
+    <div className="h-screen w-screen overflow-hidden relative flex flex-col justify-center md:pl-[30%] pl-[10%] container">
       <ThreeScene />
-      <div className="relative bg-opacity-10 backdrop-blur-lg border border-white border-opacity-30 shadow-lg rounded-xl p-5 h-[75%] w-[90%] sm:w-[35%] sm:h-auto sm:p-8">
+      <div className="relative bg-opacity-10 backdrop-blur-lg border border-white border-opacity-30 shadow-lg rounded-xl p-5 h-[75%] w-[90%] sm:w-[59%] sm:h-auto sm:p-8">
         <h1 className="text-3xl font-bold text-center text-white mb-8">تسجيل </h1>
 
         <form>

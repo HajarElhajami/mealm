@@ -10,6 +10,7 @@ module.exports = {
         primaryMid: "#94D1C3",
         primaryDarker: "#6BA89D",
         primaryDarkest: "#406F67",
+        primary : "#EAF9F6"
 
       },
     },

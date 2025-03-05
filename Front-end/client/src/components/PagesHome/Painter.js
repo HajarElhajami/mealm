@@ -157,29 +157,32 @@ const Painter = () => {
       </div>
 
       <div className="relative z-10">
-        <div className="mb-20 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-7">
-          <Link to="/WaterHeaters" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-3 px-5 text-center text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+      <div className="mb-10 max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <Link to="/WaterHeaters" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
             طلاء الجدران والأسقف 
           </Link>
-          <Link to="/WaterSystems" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-3 px-5 text-center text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+          <Link to="/WaterSystems"className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
             إعداد الأسطح قبل الطلاء  
           </Link>
-          <Link to="/LeakRepair" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-3 px-5 text-center text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+          <Link to="/LeakRepair" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">      
             اختيار الألوان والتصاميم  
           </Link>
-          <Link to="/Drainage" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-3 px-5 text-center text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+          <Link to="/Drainage" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white" >
             استخدام مواد عالية الجودة
           </Link>
-          <Link to="/HeatingSystems" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-3 px-5 text-center text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+          <Link to="/HeatingSystems" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          >
             طلاء الأسطح الخارجية
           </Link>
-          <Link to="/SystemInspection" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-3 px-5 text-center text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+          <Link to="/SystemInspection" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          >
             إصلاح العيوب
           </Link>
           {/* <Link to="/Emergencies" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-3 px-5 text-center text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
             التعامل مع العملاء
           </Link> */}
-          <Link to="/AdditionalServices" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-3 px-5 text-center text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+          <Link to="/AdditionalServices" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          >
             الخدمات الإضافية
           </Link>
         </div>
@@ -188,7 +191,7 @@ const Painter = () => {
                   <img src={img4} alt="Gardener" className="rounded-lg w-full sm:w-[90%] mx-auto" />
                   <div className="pt-3 max-w-4xl mx-auto bg-white rounded-lg p-5 sm:p-7 mt-6">
                     <h1 className="text-[#406F67] text-2xl sm:text-4xl font-bold mb-5 text-right">
-              عمل الصباغ hajar
+              عمل الصباغ
             </h1>
             <p className="text-[#406F67] text-[17px] text-right">
              يقوم بطلاء الجدران والأسقف بألوان متنوعة وفقًا لرغبة العميل.<br />

@@ -150,12 +150,12 @@ const Mover = () => {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="mb-20 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {["نقل الأثاث والأغراض المنزلية", "نقل البضائع التجارية", "خدمات التوصيل السريع", "خدمات النقل المخصصة", "خدمات النقل للشركات", "خدمات النقل للسياح", "النقل بالشاحنات الصغيرة أو الكبيرة", "النقل بالدراجات النارية أو السيارات الصغيرة", "النقل للمناطق النائية", "الخدمات الإضافية"].map((text, index) => (
+      <div className="mb-10 max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {["نقل الأثاث والأغراض المنزلية", "نقل البضائع التجارية", "خدمات التوصيل السريع", "خدمات النقل المخصصة", "خدمات النقل للشركات", "خدمات النقل للسياح", "النقل بالشاحنات الصغيرة أو الكبيرة", "النقل بالدراجات النارية أو السيارات الصغيرة", "النقل للمناطق النائية", "الخدمات الإضافية"].map((text, index) => (
             <Link
               key={index}
               to={`/service${index + 1}`}
-              className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-3 sm:px-3 px-5 text-center text-lg md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+              className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
             >
               {text}
             </Link>

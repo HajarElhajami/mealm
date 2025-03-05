@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layoute from "./Layoute";
 import Home from "./Home/Home";
-import BecomeTasker from './Pages/BecomeTasker/Become'
+import BecomeTasker from './Pages/BecomeTasker/PagesBecome'
 import Services from './Pages/Services/Services'
 import Login from './Pages/Login/Login';
 import Cleaner from './PagesHome/Cleaner'
@@ -22,7 +22,6 @@ import LeakRepair from './PagesPlumber/LeakRepair'
 import WaterSystems from './PagesPlumber/WaterSystems'
 import Layoute1 from "./Layoute1";
 import Rojester from './Pages/Login/Rogester'
-
 
 
 function Allpages() {
@@ -54,7 +53,6 @@ function Allpages() {
            <Route path="LeakRepair" element={<LeakRepair />} />
            <Route path="WaterSystems" element={<WaterSystems />} />
 
-           
 
            </Route>
       </Routes>

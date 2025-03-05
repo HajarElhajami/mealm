@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chroma-js": "^3.1.2",
     "cra-template-pwa": "2.0.0",
     "framer-motion": "^12.4.7",
+    "gsap": "^3.12.7",
     "lucide-react": "^0.475.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
