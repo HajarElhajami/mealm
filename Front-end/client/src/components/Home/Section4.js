@@ -18,7 +18,7 @@ export default function PartnersSection() {
   return (
     <section className="bg-gradient-to-r from-[#94D1C3] to-[#EAF9F6] py-10 text-center">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-5xl font-extrabold text-[#234B44] mb-10 tracking-wide transition duration-500 ">
+        <h2 className="text-4xl font-bold text-[#234B44] mb-10 tracking-wide transition duration-500 ">
           شركاؤنا في النجاح
         </h2>
         <p className="text-[#406F67] text-xl mb-12 font-light leading-relaxed">
@@ -50,7 +50,7 @@ export default function PartnersSection() {
         </Swiper>
         
         <Link 
-          to="/partnership" 
+          to="/l1/partnership" 
           className="mt-12 bg-[#234B44] text-white py-4 px-10 rounded-full text-lg font-bold shadow-lg hover:text-[#234B44] hover:bg-white transition duration-300 transform hover:scale-105 text-center inline-block"
         >
             إحصل على شراكة مع معلم

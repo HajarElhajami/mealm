@@ -34,6 +34,8 @@ function Allpages() {
            <Route path="services" element={<Services />} />
            <Route path="BecomeTasker" element={<BecomeTasker />} />
            <Route path="rogester" element={<Rojester />} />
+           <Route path="partnership" element={<Partnership />} />
+
            </Route> 
 
            <Route path="/" element={<Layoute />} >
@@ -53,7 +55,7 @@ function Allpages() {
            <Route path="Drainage" element={<Drainage />} />
            <Route path="LeakRepair" element={<LeakRepair />} />
            <Route path="WaterSystems" element={<WaterSystems />} />
-           <Route path="partnership" element={<Partnership />} />
+           {/* <Route path="partnership" element={<Partnership />} /> */}
 
 
            </Route>
