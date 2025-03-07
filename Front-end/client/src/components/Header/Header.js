@@ -132,7 +132,7 @@ function Header() {
                 placeholder="ما الخدمة التي تحتاجها اليوم؟"
                 className="w-full max-w-lg md:max-w-2xl px-6 pr-12 py-3 text-lg border border-primaryMid rounded-full shadow-sm text-black focus:ring-2 focus:ring-primaryMid focus:outline-none"
               />
-              <button className="absolute right-4 md:right-[25%] bg-[#86C4B8] text-white p-3 sm:p-4 rounded-full hover:bg-[#406F67] transition">
+              <button className="absolute right-4 md:right-[28%] bg-[#86C4B8] text-white p-3 sm:p-4 rounded-full hover:bg-[#406F67] transition">
                 <Search size={20} />
               </button>
              </div>

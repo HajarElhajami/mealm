@@ -106,13 +106,13 @@ import ThreeScene from "./ThreeScene";
 
 function Rojester() {
   return (
-    <div className="h-screen w-screen overflow-hidden relative flex flex-col justify-center md:pl-[30%] pl-[10%] container">
+    <div className="h-screen w-screen overflow-hidden relative flex justify-center items-center">
       <ThreeScene />
-      <div className="relative bg-opacity-10 backdrop-blur-lg border border-white border-opacity-30 shadow-lg rounded-xl p-5 h-[75%] w-[90%] sm:w-[59%] sm:h-auto sm:p-8">
-        <h1 className="text-3xl font-bold text-center text-white mb-8">تسجيل </h1>
+      <div className="relative bg-opacity-10 backdrop-blur-lg border border-white border-opacity-30 shadow-lg rounded-xl p-5 h-[75%] w-[90%] sm:w-[40%] sm:h-[65%] sm:p-8">
+        <h1 className="text-3xl font-bold text-center text-white mb-9">تسجيل </h1>
 
         <form>
-          <div className="relative mb-5">
+          <div className="relative mb-6">
             <input
               type="text"
               placeholder="اسم المستخدم"
@@ -121,8 +121,7 @@ function Rojester() {
             <FaUser className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white" />
           </div>
 
-          {/* حقل البريد الإلكتروني */}
-          <div className="relative mb-5">
+          <div className="relative mb-6">
             <input
               type="email"
               placeholder="البريد الإلكتروني"
@@ -131,7 +130,7 @@ function Rojester() {
             <FaEnvelope className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white" />
           </div>
 
-          <div className="relative mb-5">
+          <div className="relative mb-6">
             <input
               type="password"
               placeholder="كلمة المرور"
@@ -140,7 +139,7 @@ function Rojester() {
             <FaLock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white" />
           </div>
 
-          <div className="flex justify-between text-white text-sm mb-5">
+          <div className="flex justify-between text-white text-sm mb-6">
             <label className="flex items-center">
               <input type="checkbox" className="mr-2" /> تذكرني
             </label>
@@ -151,7 +150,7 @@ function Rojester() {
             تسجيل الدخول
           </button>
 
-          <div className="text-center text-white mt-5">
+          <div className="text-center text-white mt-6">
             <p>ليس لديك حساب؟ <a href="#" className="font-semibold underline">سجل الآن</a></p>
           </div>
         </form>
