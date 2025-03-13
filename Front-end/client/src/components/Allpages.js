@@ -12,17 +12,10 @@ import Mover from './PagesHome/Mover'
 import Painter from './PagesHome/Painter'
 import PopularServices from './PagesHome/PopularServices'
 import Plumber from './PagesHome/Plumber'
-import AdditionalServices from './PagesPlumber/AdditionalServices'
-import Emergencies from './PagesPlumber/Emergencies'
-import SystemInspection from './PagesPlumber/SystemInspection'
-import HeatingSystems from './PagesPlumber/HeatingSystems'
-import WaterHeaters from './PagesPlumber/WaterHeaters'
-import Drainage from './PagesPlumber/Drainage'
-import LeakRepair from './PagesPlumber/LeakRepair'
-import WaterSystems from './PagesPlumber/WaterSystems'
 import Layoute1 from "./Layoute1";
 import Rojester from './Pages/Login/Rogester'
 import Partnership from './Pages/Partnership/PagesPartnership'
+import RequestForm from './Pages/RequestForm/RequestForm'
 
 
 function Allpages() {
@@ -35,6 +28,7 @@ function Allpages() {
            <Route path="BecomeTasker" element={<BecomeTasker />} />
            <Route path="rogester" element={<Rojester />} />
            <Route path="partnership" element={<Partnership />} />
+           <Route path="request" element={<RequestForm />} />
 
            </Route> 
 
@@ -47,14 +41,6 @@ function Allpages() {
            <Route path="Painter" element={<Painter />} />
            <Route path="PopularServices" element={<PopularServices />} />
            <Route path="/Plumber" element={<Plumber />} />
-           <Route path="AdditionalServices" element={<AdditionalServices />} />
-           <Route path="Emergencies" element={<Emergencies />} />
-           <Route path="SystemInspection" element={<SystemInspection />} />
-           <Route path="HeatingSystems" element={<HeatingSystems />} />
-           <Route path="WaterHeaters" element={<WaterHeaters />} />
-           <Route path="Drainage" element={<Drainage />} />
-           <Route path="LeakRepair" element={<LeakRepair />} />
-           <Route path="WaterSystems" element={<WaterSystems />} />
 
 
            </Route>

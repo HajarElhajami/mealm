@@ -138,23 +138,41 @@ const Electrician = () => {
       />
 
       <div className="relative z-10">
-      <div className="mb-10 max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {["تركيب التجهيزات الكهربائية", "تمديد الأسلاك والكابلات", "إصلاح الأعطال الكهربائية", "تركيب أنظمة الإنارة", "تركيب أنظمة الطاقة الشمسية", "صيانة الأنظمة الكهربائية", "تركيب أنظمة الأمان والمراقبة", "تركيب أنظمة التدفئة والتبريد", "استشارات كهربائية", "الخدمات الإضافية"].map((service, i) => (
-            <Link 
-              key={i} 
-              to={`/service${i + 1}`} 
-              className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
-            >
-              {service}
-            </Link>
-          ))}
-        </div>
+      <div className="mb-20 max-w-7xl mx-auto grid md:grid-cols-4 grid-cols-2 gap-7">
+          <Link to="/l1/request" state={{ serviceName: "تركيب التجهيزات الكهربائية " }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+          تركيب التجهيزات الكهربائية 
+          </Link>
+          <Link to="/l1/request" state={{ serviceName: "تمديد الأسلاك والكابلات"}} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+           تمديد الأسلاك والكابلات
+          </Link>
+          <Link to="/l1/request" state={{ serviceName:"إصلاح الأعطال الكهربائية" }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+           إصلاح الأعطال الكهربائية
+          </Link>
+          <Link to="/l1/request" state={{ serviceName:"تركيب أنظمة الإنارة" }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+           تركيب أنظمة الإنارة
+          </Link>
+          <Link to="/l1/request" state={{ serviceName:"تركيب أنظمة الطاقة الشمسية" }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+           تركيب أنظمة الطاقة الشمسية
+          </Link>
+          <Link to="/l1/request" state={{ serviceName: "صيانة الأنظمة الكهربائية", }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+           صيانة الأنظمة الكهربائية
+          </Link>
+          <Link to="/l1/request" state={{ serviceName: "تركيب أنظمة الأمان والمراقبة" }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+           تركيب أنظمة الأمان والمراقبة
+          </Link>
+          <Link to="/l1/request" state={{ serviceName: "تركيب أنظمة التدفئة والتبريد"}} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+           تركيب أنظمة التدفئة والتبريد
+          </Link>
+          <Link to="/l1/request" state={{ serviceName: "استشارات كهربائية" }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+           استشارات كهربائية
+          </Link>
 
-        <div className="max-w-6xl mx-auto bg-[#CFF5EC] rounded-lg p-6 sm:p-10">
-          <img src={img9} alt="Electrician" className="rounded-lg w-full max-w-[90%] mx-auto" />
-          <div className="pt-3 bg-white rounded-lg p-5 sm:p-7 mt-6 flex flex-col items-center">
-            <h1 className="text-[#406F67] text-2xl md:text-4xl font-bold mb-4 text-center">
-              عمل الكهربائي  
+       </div>
+       <div className="max-w-6xl mx-auto bg-[#CFF5EC] rounded-lg p-5 sm:p-10">
+       <img src={img9} alt="Electrician" className="rounded-lg w-full max-w-[90%] mx-auto" />
+       <div className="pt-3 max-w-4xl mx-auto bg-white rounded-lg p-5 sm:p-7 mt-6">
+       <h1 className="text-[#406F67] text-2xl sm:text-4xl font-bold mb-5 text-right">
+         عمل الكهربائي  
             </h1>
             <p className="text-[#406F67] text-[17px] text-right">
                يقوم بتركيب وصيانة التمديدات الكهربائية في المنازل والمحلات التجارية. <br/>  

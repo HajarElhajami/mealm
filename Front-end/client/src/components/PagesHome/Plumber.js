@@ -39,45 +39,45 @@ const Plumber = () => {
 
       <div className="relative z-10">
       <div className="mb-10 max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <Link to="/WaterSystems" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          <Link to="/l1/request" state={{ serviceName: "  تركيب أنظمة المياه" }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
           >
             تركيب أنظمة المياه
           </Link>
-          <Link to="/LeakRepair" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          <Link to="/l1/request" state={{ serviceName: " إصلاح التسريبات" }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
           >
             إصلاح التسريبات
           </Link>
-          <Link to="/Drainage" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          <Link to="/l1/request" state={{ serviceName: " صيانة أنظمة الصرف الصحي" }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
           >
             صيانة أنظمة الصرف الصحي
           </Link>
-          <Link to="/WaterHeaters" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          <Link to="/l1/request" state={{ serviceName: "تركيب سخانات المياه" }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
           >
             تركيب سخانات المياه
           </Link>
-          <Link to="/HeatingSystems" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          <Link to="/l1/request" state={{ serviceName: "  تركيب أنظمة التدفئة" }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
           >
             تركيب أنظمة التدفئة
           </Link>
-          <Link to="/SystemInspection" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          <Link to="/l1/request" state={{ serviceName: "  فحص الأنظمة" }}  className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
           >
             فحص الأنظمة
           </Link>
-          <Link to="/Emergencies" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          <Link to="/l1/request" state={{ serviceName: "  التعامل مع حالات الطوارئ" }}  className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
           >
             التعامل مع حالات الطوارئ
           </Link>
-          <Link to="/AdditionalServices" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          {/* <Link to="/l1/request" state={{ serviceName: "تنظيف الحدائق" }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
           >
             الخدمات الإضافية
-          </Link>
+          </Link> */}
         </div>
 
         <div className="max-w-6xl mx-auto bg-[#CFF5EC] rounded-lg p-5 sm:p-10">
           <img src={img2} alt="Gardener" className="rounded-lg w-full sm:w-[90%] mx-auto" />
           <div className="pt-3 max-w-4xl mx-auto bg-white rounded-lg p-5 sm:p-7 mt-6">
             <h1 className="text-[#406F67] text-2xl sm:text-4xl font-bold mb-5 text-right">
-              عمل السباك
+            عمل السباك
             </h1>
             <p className="text-[#406F67] text-[17px] text-right">
                تركيب وإصلاح أنظمة المياه والصرف الصحي<br />

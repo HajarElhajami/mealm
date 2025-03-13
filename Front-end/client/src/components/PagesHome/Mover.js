@@ -151,22 +151,35 @@ const Mover = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto">
       <div className="mb-10 max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {["نقل الأثاث والأغراض المنزلية", "نقل البضائع التجارية", "خدمات التوصيل السريع", "خدمات النقل المخصصة", "خدمات النقل للشركات", "خدمات النقل للسياح", "النقل بالشاحنات الصغيرة أو الكبيرة", "النقل بالدراجات النارية أو السيارات الصغيرة", "النقل للمناطق النائية", "الخدمات الإضافية"].map((text, index) => (
-            <Link
-              key={index}
-              to={`/service${index + 1}`}
-              className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
-            >
-              {text}
-            </Link>
+    {[
+     "نقل الأثاث والأغراض المنزلية",
+     "نقل البضائع التجارية",
+     "خدمات التوصيل السريع",
+     "خدمات النقل المخصصة",
+     "خدمات النقل للشركات",
+     "خدمات النقل للسياح",
+     "النقل بالشاحنات الصغيرة أو الكبيرة",
+     "النقل بالدراجات النارية ",
+     "النقل بالسيارات الصغيرة ",
+      "النقل للمناطق النائية",
+         ].map((text, index) => (
+         <Link
+            key={index}
+            to="/l1/request"
+            state={{ serviceName: text }}
+            className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+         >
+           {text}
+         </Link>
           ))}
-        </div>
-
+           </div>
             <div className="max-w-6xl mx-auto bg-[#CFF5EC] rounded-lg p-5 sm:p-10">
                  <img src={img5} alt="Gardener" className="rounded-lg w-full sm:w-[90%] mx-auto" />
                  <div className="pt-3 max-w-4xl mx-auto bg-white rounded-lg p-5 sm:p-7 mt-6">
-                   <h1 className="text-[#406F67] text-2xl sm:text-4xl font-bold mb-5 text-right"> عامل التوصيل</h1>
-                   <p className="text-[#406F67] text-[17px] text-right">
+                 <h1 className="text-[#406F67] text-2xl sm:text-4xl font-bold mb-5 text-right">
+                   عامل التوصيل
+                   </h1>
+           <p className="text-[#406F67] text-[17px] text-right">
                نقل الأثاث والأغراض المنزلية بين المنازل أو المدن بأمان.<br />
                توفير خدمات تغليف الأثاث للحماية أثناء النقل.<br />
                تفكيك وتركيب الأثاث الكبير لتسهيل النقل.<br />

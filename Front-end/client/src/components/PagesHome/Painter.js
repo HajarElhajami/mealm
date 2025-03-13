@@ -158,39 +158,39 @@ const Painter = () => {
 
       <div className="relative z-10">
       <div className="mb-10 max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <Link to="/WaterHeaters" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+         <Link  to="/l1/request" state={{ serviceName: " طلاء المنزل بالكامل" }}  className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+            طلاء المنزل بالكامل
+          </Link>
+         <Link  to="/l1/request" state={{ serviceName: " طلاء الجدران والأسقف " }}  className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
             طلاء الجدران والأسقف 
           </Link>
-          <Link to="/WaterSystems"className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
+          <Link  to="/l1/request" state={{ serviceName: "إعداد الأسطح قبل الطلاء" }} className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
             إعداد الأسطح قبل الطلاء  
           </Link>
-          <Link to="/LeakRepair" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">      
+          <Link to="/l1/request" state={{ serviceName: " اختيار الألوان والتصاميم" }}  className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white">      
             اختيار الألوان والتصاميم  
           </Link>
-          <Link to="/Drainage" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white" >
+          <Link to="/l1/request" state={{ serviceName: " استخدام مواد عالية الجودة" }}  className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white" >
             استخدام مواد عالية الجودة
           </Link>
-          <Link to="/HeatingSystems" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          <Link to="/l1/request" state={{ serviceName: "  طلاء الأسطح الخارجية" }}  className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
           >
             طلاء الأسطح الخارجية
           </Link>
-          <Link to="/SystemInspection" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          <Link to="/l1/request" state={{ serviceName: "   إصلاح العيوب" }}  className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
           >
             إصلاح العيوب
           </Link>
-          {/* <Link to="/Emergencies" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-3 px-5 text-center text-xl font-semibold hover:bg-primaryDarkest hover:text-white">
-            التعامل مع العملاء
-          </Link> */}
-          <Link to="/AdditionalServices" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
+          {/* <Link to="/AdditionalServices" className="text-[#406F67] border border-[#94D1C3] rounded-3xl py-2 px-3 text-center text-sm md:py-3 md:px-5 md:text-xl font-semibold hover:bg-primaryDarkest hover:text-white"
           >
             الخدمات الإضافية
-          </Link>
+          </Link> */}
         </div>
 
         <div className="max-w-6xl mx-auto bg-[#CFF5EC] rounded-lg p-5 sm:p-10">
                   <img src={img4} alt="Gardener" className="rounded-lg w-full sm:w-[90%] mx-auto" />
                   <div className="pt-3 max-w-4xl mx-auto bg-white rounded-lg p-5 sm:p-7 mt-6">
-                    <h1 className="text-[#406F67] text-2xl sm:text-4xl font-bold mb-5 text-right">
+            <h1 className="text-[#406F67] text-2xl sm:text-4xl font-bold mb-5 text-right">
               عمل الصباغ
             </h1>
             <p className="text-[#406F67] text-[17px] text-right">
