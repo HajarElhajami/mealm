@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Users = () => {
-  const [customers, setCustomers] = useState([]);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    const fetchCustomers = async () => {
+    const fetchUsers = async () => {
       try {
         setLoading(true);
         const response = await axios.get("http://localhost:5000/api/users/get");
         console.log("📢 البيانات المسترجعة:", response.data); // ✅ تأكد أن البيانات تظهر هنا
         // تحديث الحالة للتعامل مع الـ users في الـ response
-        setCustomers(response.data.users);  // هنا نستخدم response.data.users
+        setUsers(response.data.users);  // هنا نستخدم response.data.users
       } catch (err) {
         setError("حدث خطأ أثناء جلب البيانات، يرجى المحاولة لاحقاً.");
         console.error("Error fetching data:", err);
@@ -21,17 +21,28 @@ const Users = () => {
       }
     };
   
-    fetchCustomers();
+    fetchUsers();
   }, []);  
 
-  // Delete customer function
-  const deleteCustomer = async (id) => {
+  // // Delete customer function
+  // const deleteCustomer = async (id) => {
+  //   try {
+  //     await axios.delete(`http://localhost:5000/api/users/${id}`);
+  //     setCustomers(customers.filter(user => user._id !== id)); // Update the state to remove the deleted customer
+  //   } catch (error) {
+  //     console.error("Error deleting customer:", error);
+  //     alert("حدث خطأ أثناء حذف المستخدم");
+  //   }
+  // };
+
+
+  const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/users/${id}`);
-      setCustomers(customers.filter(user => user._id !== id)); // Update the state to remove the deleted customer
+      await axios.delete(`http://localhost:5000/api/users/users/${id}`);
+      setUsers(users.filter(user => user._id !== id));
     } catch (error) {
-      console.error("Error deleting customer:", error);
-      alert("حدث خطأ أثناء حذف المستخدم");
+      console.error("❌ خطأ في حذف العامل:", error);
+      alert("❌ حدث خطأ أثناء حذف العامل");
     }
   };
 
@@ -58,15 +69,15 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {customers.length > 0 ? (
-              customers.map(user => (
+            {users.length > 0 ? (
+              users.map(user => (
                 <tr key={user._id} className="text-center">
                   <td className="border p-2">{user.name}</td>
                   <td className="border p-2">{user.email}</td>
                   <td className="border p-2">******</td>
                   <td className="border p-2">
                     <button
-                      onClick={() => deleteCustomer(user._id)}
+                      onClick={() => deleteUser(user._id)}
                       className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
                     >
                       حذف

@@ -39,17 +39,32 @@ function Register() {
       console.error("❌ خطأ في التسجيل:", error);
       alert(error.response?.data?.message || "❌ حدث خطأ أثناء التسجيل");
     }
-  };
+  // };
+  // const deleteUser = async (id) => {
+  //   try {
+  //     await axios.delete(`http://localhost:5000/api/users/${id}`);
+  //     setUsers(users.filter((user) => user._id !== id)); // تحديث القائمة بعد الحذف
+  //     alert("✅ تم حذف المستخدم بنجاح");
+  //   } catch (error) {
+  //     console.error("❌ خطأ في حذف المستخدم:", error);
+  //     alert("❌ حدث خطأ أثناء حذف المستخدم");
+  //   }
+  // };
+  
+
+
+};
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/users/${id}`);
-      setUsers(users.filter((user) => user._id !== id)); // تحديث القائمة بعد الحذف
-      alert("✅ تم حذف المستخدم بنجاح");
+      await axios.delete(`http://localhost:5000/api/users/users/${id}`);
+      setUsers(users.filter(user => user._id !== id));
     } catch (error) {
-      console.error("❌ خطأ في حذف المستخدم:", error);
-      alert("❌ حدث خطأ أثناء حذف المستخدم");
+      console.error("❌ خطأ في حذف العامل:", error);
+      alert("❌ حدث خطأ أثناء حذف العامل");
     }
   };
+
+
   
   return (
     <div className="h-screen w-screen overflow-hidden relative flex justify-center items-center">
