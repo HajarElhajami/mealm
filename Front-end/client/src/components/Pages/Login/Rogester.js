@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import axios from "axios";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa"; 
@@ -8,10 +7,11 @@ function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [users, setUsers] = useState([]); // تعريف المتغير setUsers و users
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    console.log(username, email, password);
+    console.log(username , email , password);
 
     if (!username || !email || !password) {
       alert("❌ يرجى ملء جميع الحقول");
@@ -19,7 +19,7 @@ function Register() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/users/users", { 
+      const response = await axios.post("http://localhost:5000/api/users", { 
         name: username, 
         email, 
         password,
@@ -32,15 +32,25 @@ function Register() {
       setPassword("");
       if (response.data.success) {
         alert(`مرحبًا ${response.data.username}!✅ تم التسجيل بنجاح! يمكنك الآن تسجيل الدخول.`);
-        // إعادة توجيه المستخدم إلى صفحة الدخول بعد التسجيل
-        window.location.href = "/"; 
+        // إعادة توجيه المستخدم إلى الصفحة الرئيسية بعد تسجيل الدخول
+        window.location.href = "/login"; 
       }
     } catch (error) {
       console.error("❌ خطأ في التسجيل:", error);
       alert(error.response?.data?.message || "❌ حدث خطأ أثناء التسجيل");
     }
   };
-
+  const deleteUser = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/users/${id}`);
+      setUsers(users.filter((user) => user._id !== id)); // تحديث القائمة بعد الحذف
+      alert("✅ تم حذف المستخدم بنجاح");
+    } catch (error) {
+      console.error("❌ خطأ في حذف المستخدم:", error);
+      alert("❌ حدث خطأ أثناء حذف المستخدم");
+    }
+  };
+  
   return (
     <div className="h-screen w-screen overflow-hidden relative flex justify-center items-center">
       <ThreeScene />

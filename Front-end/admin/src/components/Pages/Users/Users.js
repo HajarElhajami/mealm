@@ -5,14 +5,14 @@ const Users = () => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
         setLoading(true);
         const response = await axios.get("http://localhost:5000/api/users/get");
         console.log("📢 البيانات المسترجعة:", response.data); // ✅ تأكد أن البيانات تظهر هنا
-        setCustomers(response.data);
+        // تحديث الحالة للتعامل مع الـ users في الـ response
+        setCustomers(response.data.users);  // هنا نستخدم response.data.users
       } catch (err) {
         setError("حدث خطأ أثناء جلب البيانات، يرجى المحاولة لاحقاً.");
         console.error("Error fetching data:", err);
@@ -22,7 +22,7 @@ const Users = () => {
     };
   
     fetchCustomers();
-  }, []);
+  }, []);  
 
   // Delete customer function
   const deleteCustomer = async (id) => {

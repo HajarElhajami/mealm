@@ -70,20 +70,35 @@ const getWorkers = async (req, res) => {
   }
 };
 
-// 🟢 دالة لحذف عامل
+// حذف عامل
 const deleteWorker = async (req, res) => {
   try {
-    const { id } = req.params;
-    const deletedWorker = await Worker.findByIdAndDelete(id);
+    const workerId = req.params.id;  // الحصول على الـ id من معلمات الطلب
 
-    if (!deletedWorker) {
-      return res.status(404).json({ success: false, message: "العامل غير موجود" });
+    // تحقق إذا كان العامل موجودًا في قاعدة البيانات
+    const worker = await Worker.findById(workerId);
+    if (!worker) {
+      return res.status(404).json({ message: "❌ العامل غير موجود" });
     }
 
-    res.status(200).json({ success: true, message: "تم حذف العامل بنجاح" });
+    // حذف العامل من قاعدة البيانات
+    await Worker.findByIdAndDelete(workerId);
+
+    res.status(200).json({
+      success: true,
+      message: "✅ تم حذف العامل بنجاح",
+    });
   } catch (error) {
-    res.status(500).json({ success: false, message: "❌ خطأ أثناء حذف العامل", error });
+    console.error(error);
+    res.status(500).json({ message: "❌ حدث خطأ أثناء حذف العامل" });
   }
+};
+
+module.exports = {
+  registerWorker,
+  loginWorker,
+  getWorkers,
+  deleteWorker, // تأكد من أنك تضيف الوظيفة هنا
 };
 
 // تصدير الدوال
