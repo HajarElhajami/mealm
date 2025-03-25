@@ -7,6 +7,8 @@ import Settings from "./Pages/Settings/Settings";
 import Reviews from "./Pages/Reviews/Reviews";
 import Orders from "./Pages/Orders/Orders";
 import Clients from "./Pages/Clients/Clients"
+import Customer from "./Pages/Customer/Customer";
+
 
 
 function Allpages() {
@@ -20,6 +22,7 @@ function Allpages() {
               <Route path="reviews" element={<Reviews />}/>
               <Route path="orders" element={<Orders />}/>
               <Route path="clients" element={<Clients />}/>
+              <Route path="customer" element={<Customer />}/>
 
             </Route>
           </Routes>

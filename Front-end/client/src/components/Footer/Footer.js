@@ -39,8 +39,9 @@ export default function Footer() {
       <div className="text-center mt-8">
         <h3 className="text-lg font-semibold mb-2">تابعنا على الشبكات الاجتماعية</h3>
    <div className="flex justify-center">
-          
-  <div className="relative w-[115px] h-[115px]">
+
+  <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">      
+  <div className="relative w-[95px] h-[115px]">
    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
     <defs>
       <linearGradient id="gradient-facebook" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -58,9 +59,10 @@ export default function Footer() {
     <FaFacebookF />
    </div>
   </div>
+ </a>
 
-
-  <div className="relative w-[115px] h-[115px]">
+  <a href="https://www.Twitter.com" target="_blank" rel="noopener noreferrer">
+  <div className="relative w-[95px] h-[115px]">
    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
     <defs>
       <linearGradient id="gradient-twitter" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -78,9 +80,10 @@ export default function Footer() {
     <FaTwitter />
    </div>
   </div>
+  </a>
 
-
-  <div className="relative w-[115px] h-[115px]">
+  <a href="https://www.Instagram.com" target="_blank" rel="noopener noreferrer">
+  <div className="relative w-[95px] h-[115px]">
    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
     <defs>
       <linearGradient id="gradient-instagram" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -99,9 +102,10 @@ export default function Footer() {
      <FaInstagram />
    </div>
   </div>
+  </a>
 
-
-  <div className="relative w-[115px] h-[115px]">
+  <a href="https://www.LinkedinIn.com" target="_blank" rel="noopener noreferrer">
+  <div className="relative w-[95px] h-[115px]">
    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
     <defs>
       <linearGradient id="gradient-linkedin" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -119,8 +123,9 @@ export default function Footer() {
     <div className="absolute inset-0 pb-4 pr-4 flex items-center justify-center text-white text-2xl transition-all duration-300 transform hover:scale-125 hover:rotate-12 hover:shadow-2xl" style={{ clipPath: "polygon(25% 10%, 75% 5%, 100% 45%, 90% 85%, 50% 100%, 10% 85%, 0% 40%)" }}>
       <FaLinkedinIn />
     </div>
-         </div>
-        </div>
+   </div>
+   </a>
+   </div>
       </div>
       </div>
       </div>

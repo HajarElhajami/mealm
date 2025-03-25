@@ -16,6 +16,7 @@ import Layoute1 from "./Layoute1";
 import Rojester from './Pages/Login/Rogester'
 import Partnership from './Pages/Partnership/PagesPartnership'
 import RequestForm from './Pages/RequestForm/RequestForm'
+import ProfilePage1 from './Pages/profile/profilePage1'
 
 
 function Allpages() {
@@ -29,7 +30,7 @@ function Allpages() {
            <Route path="rogester" element={<Rojester />} />
            <Route path="partnership" element={<Partnership />} />
            <Route path="request" element={<RequestForm />} />
-
+           <Route path="profilePage1" element={<ProfilePage1 />} />
            </Route> 
 
            <Route path="/" element={<Layoute />} >
@@ -41,6 +42,7 @@ function Allpages() {
            <Route path="Painter" element={<Painter />} />
            <Route path="PopularServices" element={<PopularServices />} />
            <Route path="/Plumber" element={<Plumber />} />
+           {/* <Route path="profilePage1" element={<ProfilePage1 />} /> */}
 
 
            </Route>

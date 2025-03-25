@@ -26,6 +26,10 @@ const workerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  nationalIdImage: {
+    type: String, // لتخزين مسار الصورة
+    required: true,
+  },
 });
 
 const Worker = mongoose.model("Worker", workerSchema);

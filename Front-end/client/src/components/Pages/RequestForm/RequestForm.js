@@ -45,7 +45,6 @@ const RequestForm = () => {
               className="w-full p-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-700 font-semibold cursor-not-allowed text-right"
             />
           </div>
-
           {[ 
             { field: "name", label: "الاسم الكامل", icon: <FaUser className="text-gray-500 ml-2" /> },
             { field: "phone", label: "رقم الهاتف", icon: <FaPhone className="text-gray-500 ml-2" /> },
@@ -67,7 +66,6 @@ const RequestForm = () => {
               </div>
             </div>
           ))}
-
           <div>
             <label className="block text-gray-700 font-medium mb-1">تحميل صورة المشكلة:</label>
             <div className="flex items-center border border-gray-300 rounded-xl p-3 bg-white cursor-pointer">
@@ -93,5 +91,4 @@ const RequestForm = () => {
     </div>
   );
 };
-
 export default RequestForm;

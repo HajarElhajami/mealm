@@ -3,6 +3,7 @@ import BecomeTasker from '../Pages/BecomeTasker/Become'
 import Services from './Services/Services'
 import Login from './Login/Login';
 import Partnership from './Partnership/Partnership'
+import ClientDashboard from './profile'
 
 function Pages() {
     return (
@@ -11,6 +12,7 @@ function Pages() {
         <Services/>
         <Login/>
         <Partnership/>
+        <ClientDashboard/>
       </div>
     );
   }
