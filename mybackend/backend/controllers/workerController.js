@@ -126,62 +126,61 @@
 
 
 
-
 const Worker = require("../models/Worker");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 
-// 🔹 إعدادات Multer لتخزين الصور
+// 🔹 Paramétrage de Multer pour le stockage des images
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/"); // مجلد تخزين الصور
+    cb(null, "uploads/"); // Dossier de stockage des images
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // تسمية الملف باستخدام التوقيت
+    cb(null, Date.now() + path.extname(file.originalname)); // Renommer les fichiers avec un timestamp
   },
 });
 
-// 🔹 السماح فقط بأنواع الصور المطلوبة
+// 🔹 Filtre pour n'accepter que des images
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
   if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new Error("❌ فقط ملفات الصور (JPG, PNG) مسموح بها"), false);
+    cb(new Error("❌ Seuls les fichiers JPG, PNG sont autorisés"), false);
   }
 };
 
 const upload = multer({
   storage,
   fileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 }, // الحد الأقصى 5 ميغا بايت
+  limits: { fileSize: 5 * 1024 * 1024 }, // Taille maximale : 5 MB
 });
 
-// 🔹 منطق تسجيل عامل جديد مع رفع صورة البطاقة الوطنية
+// 🔹 Inscription d'un nouveau travailleur
 const registerWorker = async (req, res) => {
   const { name, email, password, phone, city, skill } = req.body;
 
-  // ✅ التحقق من رفع الصورة
+  // ✅ Vérifier si l'image a bien été téléchargée
   if (!req.file) {
-    return res.status(400).json({ success: false, message: "❌ يرجى رفع صورة البطاقة الوطنية" });
+    return res.status(400).json({ success: false, message: "❌ Veuillez télécharger l'image de la carte d'identité" });
   }
 
-  const nationalIdImage = req.file.path; // الحصول على مسار الصورة
+  const nationalIdImage = req.file.path.replace(path.sep, "/"); // Remplacer les backslashes par des slashes
 
   try {
-    // ✅ التحقق من وجود العامل مسبقًا
+    // ✅ Vérifier si le travailleur existe déjà
     const existingWorker = await Worker.findOne({ email });
     if (existingWorker) {
-      return res.status(400).json({ success: false, message: "❌ هذا البريد الإلكتروني مسجل مسبقًا، يرجى استخدام بريد آخر" });
+      return res.status(400).json({ success: false, message: "❌ Cet e-mail est déjà utilisé, veuillez en utiliser un autre" });
     }
 
-    // ✅ تشفير كلمة المرور
+    // ✅ Hash du mot de passe
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // ✅ إنشاء حساب العامل
+    // ✅ Créer un nouveau travailleur
     const newWorker = new Worker({
       name,
       email,
@@ -193,63 +192,63 @@ const registerWorker = async (req, res) => {
     });
 
     await newWorker.save();
-    return res.status(201).json({ success: true, message: "✅ تم تسجيل العامل بنجاح" });
+    return res.status(201).json({ success: true, message: "✅ Travailleur enregistré avec succès" });
   } catch (error) {
-    return res.status(500).json({ success: false, message: "❌ حدث خطأ في الخادم" });
+    return res.status(500).json({ success: false, message: "❌ Une erreur s'est produite sur le serveur" });
   }
 };
 
-// 🔹 منطق تسجيل الدخول
+// 🔹 Login d'un travailleur
 const loginWorker = async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const worker = await Worker.findOne({ email });
     if (!worker) {
-      return res.status(400).json({ success: false, message: "❌ البريد الإلكتروني غير موجود" });
+      return res.status(400).json({ success: false, message: "❌ L'e-mail n'existe pas" });
     }
 
     const isMatch = await bcrypt.compare(password, worker.password);
     if (!isMatch) {
-      return res.status(400).json({ success: false, message: "❌ كلمة المرور غير صحيحة" });
+      return res.status(400).json({ success: false, message: "❌ Le mot de passe est incorrect" });
     }
 
-    // ✅ إنشاء `token` لتأمين الجلسات
-    const token = jwt.sign({ id: worker._id }, "سر_سري_للغاية", { expiresIn: "7d" });
+    // ✅ Générer le token JWT
+    const token = jwt.sign({ id: worker._id }, "secret", { expiresIn: "7d" });
 
     return res.status(200).json({ success: true, token, username: worker.name });
   } catch (error) {
-    return res.status(500).json({ success: false, message: "❌ حدث خطأ في الخادم" });
+    return res.status(500).json({ success: false, message: "❌ Une erreur s'est produite sur le serveur" });
   }
 };
 
-// 🔹 جلب جميع العمال بدون عرض كلمات المرور
+// 🔹 Récupérer tous les travailleurs sans afficher les mots de passe
 const getWorkers = async (req, res) => {
   try {
-    const workers = await Worker.find().select("-password"); // ❌ لا تعرض كلمات المرور
+    const workers = await Worker.find().select("-password"); // ❌ Exclure les mots de passe
     res.status(200).json({ success: true, workers });
   } catch (error) {
-    res.status(500).json({ success: false, message: "❌ خطأ في جلب العمال", error });
+    res.status(500).json({ success: false, message: "❌ Erreur lors de la récupération des travailleurs", error });
   }
 };
 
-// 🔹 حذف عامل
+// 🔹 Supprimer un travailleur
 const deleteWorker = async (req, res) => {
   try {
     const workerId = req.params.id;
 
     const worker = await Worker.findById(workerId);
     if (!worker) {
-      return res.status(404).json({ success: false, message: "❌ العامل غير موجود" });
+      return res.status(404).json({ success: false, message: "❌ Travailleur non trouvé" });
     }
 
     await Worker.findByIdAndDelete(workerId);
-
-    res.status(200).json({ success: true, message: "✅ تم حذف العامل بنجاح" });
+    res.status(200).json({ success: true, message: "✅ Travailleur supprimé avec succès" });
   } catch (error) {
-    res.status(500).json({ success: false, message: "❌ حدث خطأ أثناء حذف العامل" });
+    res.status(500).json({ success: false, message: "❌ Une erreur est survenue lors de la suppression" });
   }
 };
 
-// 🔹 تصدير الوظائف لاستخدامها في `routes`
+// 🔹 Exporter les fonctions
 module.exports = { registerWorker, loginWorker, getWorkers, deleteWorker, upload };
+

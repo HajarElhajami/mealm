@@ -44,14 +44,15 @@
 
 
 require("dotenv").config();
-const express = require("express");
+let express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/dbConfig"); 
 
 const usersRoutes = require("./routes/usersRoutes");
 const loginRoutes = require("./routes/customerRoutes"); 
 const workerRoutes = require("./routes/workerRoutes");
-// const orderRoutes = require("./routes/orderRoutes.js");
+const statsRoutes = require("./routes/statsRoutes");
+const orderRoutes = require("./routes/orderRoutes.js");
 // const customer2Routes = require("./routes/customer2Routes.js");
 
 const app = express();
@@ -60,12 +61,12 @@ app.use(express.urlencoded({ extended: true })); // للسماح بإرسال ا
 app.use(cors());
 // app.use("/uploads", express.static("uploads")); // Uncomment if you want to serve images
 
-const fs = require("fs");
-const uploadDir = "uploads";
 
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
-}
+const path = require("path");
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+
 
 connectDB()
   .then(async () => {
@@ -76,7 +77,8 @@ connectDB()
 app.use("/api/users", usersRoutes);
 app.use("/api/login", loginRoutes);
 app.use("/api/worker", workerRoutes);
-// app.use("/api/orders", orderRoutes);
+app.use("/api/stats", statsRoutes);
+app.use("/api/orders", orderRoutes);
 // app.use("/api/customers", customer2Routes);
 
 const PORT = process.env.PORT || 5000;

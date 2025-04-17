@@ -16,11 +16,11 @@ const Sidebar = () => {
         <Link to="/clients" className="block p-2 text-white hover:bg-primary hover:text-DeepJungleGreen rounded">
           إدارة العملاء
         </Link>
-        <Link to="/customer" className="block p-2 text-white hover:bg-primary hover:text-DeepJungleGreen rounded">
-          إدارة العميل 
-        </Link>
         <Link to="/orders" className="block p-2 text-white hover:bg-primary hover:text-DeepJungleGreen rounded">
-          إدارة الطلبات
+          إدارة الطلبات 
+        </Link>
+        <Link to="/customer" className="block p-2 text-white hover:bg-primary hover:text-DeepJungleGreen rounded">
+          إدارة العميل
         </Link>
         <Link to="/reviews" className="block p-2 text-white hover:bg-primary hover:text-DeepJungleGreen rounded">
           إدارة التقييمات

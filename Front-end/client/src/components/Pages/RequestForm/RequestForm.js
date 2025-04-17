@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { FaUser, FaPhone, FaCity, FaMapMarkerAlt, FaImage } from "react-icons/fa";
@@ -23,10 +22,40 @@ const RequestForm = () => {
     setFormData({ ...formData, image: e.target.files[0] });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("تم إرسال الطلب:", { service: serviceName, ...formData });
-    alert("✅ تم إرسال الطلب بنجاح!");
+
+    const form = new FormData();
+    form.append("customer", formData.name);
+    form.append("phone", formData.phone);
+    form.append("city", formData.city);
+    form.append("address", formData.address);
+    form.append("service", serviceName);
+    form.append("image", formData.image);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/orders", {
+        method: "POST",
+        body: form,
+      });
+
+      if (response.ok) {
+        alert("✅ تم إرسال الطلب بنجاح!");
+        // إعادة تعيين النموذج
+        setFormData({
+          name: "",
+          phone: "",
+          city: "",
+          address: "",
+          image: null,
+        });
+      } else {
+        alert("❌ فشل في إرسال الطلب");
+      }
+    } catch (error) {
+      alert("❌ حدث خطأ أثناء إرسال الطلب");
+      console.error(error);
+    }
   };
 
   return (
@@ -45,6 +74,7 @@ const RequestForm = () => {
               className="w-full p-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-700 font-semibold cursor-not-allowed text-right"
             />
           </div>
+
           {[ 
             { field: "name", label: "الاسم الكامل", icon: <FaUser className="text-gray-500 ml-2" /> },
             { field: "phone", label: "رقم الهاتف", icon: <FaPhone className="text-gray-500 ml-2" /> },
@@ -66,17 +96,21 @@ const RequestForm = () => {
               </div>
             </div>
           ))}
+
           <div>
             <label className="block text-gray-700 font-medium mb-1">تحميل صورة المشكلة:</label>
-            <div className="flex items-center border border-gray-300 rounded-xl p-3 bg-white cursor-pointer">
+            <div className="relative flex items-center border border-gray-300 rounded-xl p-3 bg-white cursor-pointer">
               <FaImage className="text-gray-500 ml-2" />
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleFileChange}
                 required
-                className="w-full outline-none cursor-pointer opacity-0 text-right"
+                className="absolute left-0 top-0 w-full h-full opacity-0 cursor-pointer"
               />
+              <span className="text-sm text-gray-500 mr-2">
+                {formData.image ? formData.image.name : "اختر صورة..."}
+              </span>
             </div>
           </div>
 
@@ -91,4 +125,5 @@ const RequestForm = () => {
     </div>
   );
 };
+
 export default RequestForm;

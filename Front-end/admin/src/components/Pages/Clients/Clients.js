@@ -196,25 +196,20 @@ const Clients = () => {
                   <td className="border p-2">{worker.phone}</td>
                   <td className="border p-2">{worker.skill}</td>
                   <td className="border p-2">
-                    { console.log("iiimmgg",worker.nationalIdImage)}
-                    {worker.nationalIdImage ? (
-                     
-                      <img
-                        src={`http://localhost:5000/${worker.nationalIdImage.replace(/\\/g, '/')}`}
-                        alt="صورة البطاقة الوطنية"
-                        className="w-16 h-16 object-cover rounded-full cursor-pointer"
-                        onClick={() => openImageModal(`http://localhost:5000/${worker.nationalIdImage.replace(/\\/g, '/')}`)}
-                      />
-//                       <img
-//   src={`http://localhost:5000/${worker.nationalIdImage.replace(/\\/g, '/')}`}
-//   alt="صورة البطاقة الوطنية"
-//   className="w-16 h-16 object-cover rounded-full cursor-pointer"
-//   onClick={() => openImageModal(`http://localhost:5000/${worker.nationalIdImage.replace(/\\/g, '/')}`)}
-//   onError={(e) => { e.target.src = 'path/to/default-image.jpg'; }}
-// />
-                    ) : (
-                      <span>لا توجد صورة</span>
-                    )}
+                  {console.log("iiimmgg", worker.nationalIdImage)}
+
+                  {worker.nationalIdImage ? (
+                   
+                   <img
+                     src={`http://localhost:5000/${worker.nationalIdImage.replace(/\\/g, "/")}`}
+                     alt="صورة البطاقة الوطنية"
+                     className="w-20 h-16 object-cover cursor-pointer"
+                     onClick={() => openImageModal(`http://localhost:5000/${worker.nationalIdImage.replace(/\\/g, "/")}`)}
+                   />
+                  ) : (
+                    <span>لا توجد صورة</span>
+                  )}
+
                   </td>
                   <td className="border p-2">
                     <button
@@ -235,20 +230,19 @@ const Clients = () => {
         </table>
       </div>
 
-      {/* نافذة تكبير الصورة */}
       {isImageModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="relative bg-white p-4 rounded-lg shadow-lg max-w-3xl mx-auto">
+          <div className="relative bg-white p-3 rounded-lg shadow-lg max-w-xl mx-auto">
             <button
               onClick={closeImageModal}
-              className="absolute top-2 right-2 text-white bg-red-500 p-2 rounded-full"
+              className="absolute top-2 right-2 text-white bg-red-500 p-1 w-[35px] rounded-lg"
             >
               X
             </button>
             <img
               src={selectedImage}
               alt="صورة مكبرة"
-              className="w-full h-auto object-contain"
+              className="w-40px h-40px object-contain"
             />
           </div>
         </div>

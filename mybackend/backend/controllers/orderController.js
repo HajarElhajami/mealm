@@ -46,3 +46,78 @@
 //     res.status(500).json({ message: "حدث خطأ أثناء التحديث", error });
 //   }
 // };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const Order = require("../models/Order"); // تأكدي أن الاسم والموقع صحيحين
+
+// 📥 إنشاء طلب جديد
+const createOrder = async (req, res) => {
+  try {
+    const { customer, phone, city, address, service } = req.body;
+    const image = req.file ? req.file.filename : null;
+
+    const newOrder = new Order({
+      customer,
+      phone,
+      city,
+      address,
+      service,
+      image,
+      status: "قيد المعالجة", // يمكن تضيف حالة مبدئية
+    });
+
+    await newOrder.save();
+    res.status(201).json({ message: "✅ تم إنشاء الطلب بنجاح" });
+  } catch (error) {
+    console.error("❌ فشل في إنشاء الطلب:", error);
+    res.status(500).json({ error: "خطأ في الخادم" });
+  }
+};
+
+// 📤 جلب جميع الطلبات
+const getOrders = async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 });
+    res.json(orders);
+  } catch (error) {
+    console.error("❌ فشل في جلب الطلبات:", error);
+    res.status(500).json({ error: "فشل في جلب الطلبات" });
+  }
+};
+
+// 🔄 تحديث حالة الطلب
+const updateOrderStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const updatedOrder = await Order.findByIdAndUpdate(id, { status }, { new: true });
+
+    if (!updatedOrder) {
+      return res.status(404).json({ error: "الطلب غير موجود" });
+    }
+
+    res.json(updatedOrder);
+  } catch (error) {
+    console.error("❌ خطأ في تحديث حالة الطلب:", error);
+    res.status(500).json({ error: "خطأ في تحديث حالة الطلب" });
+  }
+};
+
+module.exports = {
+  createOrder,
+  getOrders,
+  updateOrderStatus,
+};
