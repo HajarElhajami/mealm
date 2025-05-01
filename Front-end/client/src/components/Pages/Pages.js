@@ -4,6 +4,7 @@ import Services from './Services/Services'
 import Login from './Login/Login';
 import Partnership from './Partnership/Partnership'
 import ClientDashboard from './profile'
+import CityDetails from './CityDetails'
 
 function Pages() {
     return (
@@ -13,6 +14,7 @@ function Pages() {
         <Login/>
         <Partnership/>
         <ClientDashboard/>
+        <CityDetails/>
       </div>
     );
   }

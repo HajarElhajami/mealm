@@ -1,10 +1,11 @@
-// const express = require("express");
-// const { createCustomer, getCustomers, updateCustomer } = require("../controllers/customerController.js");
+const express = require("express");
+const { createCustomer, getCustomers, updateCustomer, getCustomerById } = require("../controllers/customer2Controller");
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.post("/", createCustomer); // إضافة زبون جديد
-// router.get("/", getCustomers); // جلب جميع الزبائن
-// router.put("/:id", updateCustomer); // تحديث بيانات الزبون
+router.post("/", createCustomer); // إضافة زبون جديد
+router.get("/", getCustomers); // جلب جميع الزبائن
+router.get("/:id", getCustomerById); // 🆕 جلب بيانات زبون حسب ID
+router.put("/:id", updateCustomer); // تحديث بيانات الزبون
 
-// module.exports = router;
+module.exports = router;

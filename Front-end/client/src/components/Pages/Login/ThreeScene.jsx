@@ -75,7 +75,7 @@ const ThreeScene = () => {
     const starsLights = new THREE.Group();
     scene.add(starsLights);
 
-    const starsAmount = 70; 
+    const starsAmount = 5; 
     for (let i = 0; i < starsAmount; i++) {
       const starGeometry = new THREE.SphereGeometry(0.3, 16, 16);
       const starMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
