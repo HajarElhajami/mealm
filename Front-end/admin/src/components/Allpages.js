@@ -6,9 +6,10 @@ import Users from "./Pages/Users/Users";
 import Settings from "./Pages/Settings/Settings";
 import Reviews from "./Pages/Reviews/Reviews";
 import Orders from "./Pages/Orders/Orders";
-import Clients from "./Pages/Clients/Clients"
+import Clients from "./Pages/Clients/Clients";
 import Customer from "./Pages/Customer/Customer";
-
+import Partners from "./Pages/Partners/Partners";
+import Messages from './Pages/Messages/Messages'
 
 
 function Allpages() {
@@ -22,7 +23,9 @@ function Allpages() {
               <Route path="reviews" element={<Reviews />}/>
               <Route path="orders" element={<Orders />}/>
               <Route path="clients" element={<Clients />}/>
-              <Route path="customer" element={<Customer />}/>
+              <Route path="customer/:id" element={<Customer />}/>
+              <Route path="partners" element={<Partners />}/>
+              <Route path="messages" element={<Messages />}/>
 
             </Route>
           </Routes>

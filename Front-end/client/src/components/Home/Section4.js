@@ -51,7 +51,7 @@ export default function PartnersSection() {
         
         <Link 
           to="/l1/partnership" 
-          className="mt-12 bg-[#234B44] text-white py-4 px-10 rounded-full text-lg font-bold shadow-lg hover:text-[#234B44] hover:bg-white transition duration-300 transform hover:scale-105 text-center inline-block"
+          className="mt-12 bg-gradient-to-r from-[#406F67] to-[#86C4B8] text-white py-4 px-10 rounded-full text-lg font-bold shadow-lg transition duration-300 transform hover:scale-105 text-center inline-block"
         >
             إحصل على شراكة مع معلم
         </Link>

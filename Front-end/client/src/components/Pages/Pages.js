@@ -5,6 +5,7 @@ import Login from './Login/Login';
 import Partnership from './Partnership/Partnership'
 import ClientDashboard from './profile'
 import CityDetails from './CityDetails'
+// import WorkersPage from './WorkersPage/WorkersPage'
 
 function Pages() {
     return (
@@ -15,6 +16,7 @@ function Pages() {
         <Partnership/>
         <ClientDashboard/>
         <CityDetails/>
+        {/* <WorkersPage/> */}
       </div>
     );
   }

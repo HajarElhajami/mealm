@@ -232,7 +232,7 @@ const Section1 = () => {
               <Link 
                 to={service.link} 
                 state={{ serviceName: service.serviceName }}
-                className="bg-[#406F67] text-white px-5 py-3 rounded-full inline-block mt-3 hover:bg-[#6BA89D] transition">
+                className="bg-gradient-to-r from-[#94D1C3] to-[#406F67] text-white px-5 py-3 rounded-full inline-block mt-3 hover:bg-[#6BA89D] transition">
                 اطلب الخدمة
               </Link>
             </div>
@@ -242,7 +242,7 @@ const Section1 = () => {
 
       <div className="flex justify-center mt-8">
         <Link to="/PopularServices" 
-        className="bg-[#406F67] text-white py-3 px-6 rounded-full shadow-md hover:bg-[#6BA89D] transition text-lg">
+        className="bg-gradient-to-r from-[#94D1C3] to-[#406F67] text-white py-3 px-6 rounded-full shadow-md hover:bg-[#6BA89D] transition text-lg">
           عرض جميع الخدمات
         </Link>
       </div><br/><br/>

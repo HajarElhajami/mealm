@@ -10,6 +10,7 @@
     "buffer": "^6.0.3",
     "cra-template-pwa": "2.0.0",
     "crypto-browserify": "^3.12.1",
+    "lucide-react": "^0.503.0",
     "path-browserify": "^1.0.1",
     "querystring-es3": "^0.2.1",
     "react": "^19.0.0",
