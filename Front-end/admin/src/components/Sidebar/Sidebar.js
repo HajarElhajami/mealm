@@ -19,9 +19,9 @@ const Sidebar = () => {
         <Link to="/reviews" className="block p-2 text-white hover:bg-primary hover:text-DeepJungleGreen rounded">
           إدارة التقييمات
         </Link>
-        <Link to="/customer/:id" className="block p-2 text-white hover:bg-primary hover:text-DeepJungleGreen rounded">
+        {/* <Link to="/customer/:id" className="block p-2 text-white hover:bg-primary hover:text-DeepJungleGreen rounded">
           إدارة العميل
-        </Link>
+        </Link> */}
         <Link to="/orders" className="block p-2 text-white hover:bg-primary hover:text-DeepJungleGreen rounded">
           إدارة الطلبات 
         </Link>

@@ -55,6 +55,21 @@
 
 
 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -138,6 +153,28 @@ function InfoRow({ icon, label, value }) {
 }
 
 export default CustomerDetails;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

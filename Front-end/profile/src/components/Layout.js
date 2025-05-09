@@ -1,17 +1,17 @@
 
 import { Outlet } from 'react-router-dom';
-import Header1 from './Header/Header1.js'; 
+import Header from './Header/Header.js'; 
 import Footer from './Footer/Footer.js'; 
 
 
-function Layoute1() {
+function Layoute() {
   return (
     <div>
-        {/* <Header1 /> */}
+        <Header />
         <Outlet />
         <Footer />
     </div>
   );
 }
 
-export default Layoute1;
+export default Layoute;
