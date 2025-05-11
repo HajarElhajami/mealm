@@ -6,7 +6,7 @@ import Slider from "./Slider";
 
 function section() {
     return (
-      <div dir="rtl" className="max-w-7xl mx-auto bg-white overflow-hidden font-sans">
+      <div dir="rtl" className="bg-gradient-to-br from-gray-50 to-gray-100 max-w-7xl mx-auto bg-white overflow-hidden font-sans">
         <Section/> 
         <Services/>
         <Business/>
