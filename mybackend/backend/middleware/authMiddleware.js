@@ -1,53 +1,67 @@
-// const jwt = require('jsonwebtoken');
+// backend/middleware/uploadMiddleware.js
+const multer = require('multer');
+const path = require('path');
 
-// const authenticate = (req, res, next) => {
-//   const token = req.headers['authorization']?.split(' ')[1]; // استخراج التوكن من الرأس
-//   if (!token) {
-//     return res.status(401).json({ message: "❌ يجب تسجيل الدخول" });
-//   }
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
 
-//   try {
-//     const decoded = jwt.verify(token, 'your-secret-key');
-//     req.user = decoded;
-//     next();
-//   } catch (err) {
-//     return res.status(401).json({ message: "❌ التوكن غير صالح أو منتهٍ" });
-//   }
-// };
-
-// // تطبيق الـ middleware على المسار المحمي
-// app.get('/api/users', authenticate, (req, res) => {
-//   // تنفيذ المنطق الخاص بجلب المستخدمين
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const jwt = require("jsonwebtoken");
-
-const authenticateClient = (req, res, next) => {
-  const token = req.headers["authorization"];
-  if (!token) return res.status(403).json({ message: "❌ No token provided" });
-
-  jwt.verify(token, "secret", (err, decoded) => {
-    if (err) return res.status(403).json({ message: "❌ Invalid token" });
-
-    req.user = decoded;
-    next();
-  });
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+  if (allowedTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(new Error("❌ فقط ملفات JPG, PNG مسموحة"), false);
+  }
 };
 
-module.exports = authenticateClient;
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: 5 * 1024 * 1024 }
+});
+
+module.exports = upload;
+
+
+
+
+
+
+
+
+
+
+
+// const jwt = require("jsonwebtoken");
+
+// const authenticateClient = (req, res, next) => {
+//   // استخراج التوكن من الهيدر
+//   const authHeader = req.headers["authorization"];
+//   const token = authHeader && authHeader.split(" ")[1];
+
+//   // إذا لم يكن هناك توكن، إرجاع خطأ مناسب
+//   if (!token) {
+//     console.error("Token is missing in the Authorization header");  // تتبع الخطأ
+//     return res.status(403).json({ message: "❌ يجب تسجيل الدخول. لا يوجد توكن." });
+//   }
+
+//   // التحقق من صحة التوكن
+//   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+//     if (err) {
+//       console.error("JWT Error:", err);  // تتبع الخطأ
+//       return res.status(403).json({ message: "❌ التوكن غير صالح أو منتهي." });
+//     }
+
+//     // إذا تم التحقق بنجاح، إضافة البيانات المفككة إلى الطلب
+//     req.user = decoded;
+//     next();  // متابعة الطلب
+//   });
+// };
+
+// module.exports = authenticateClient;

@@ -1,10 +1,38 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const multer = require("multer");
-const path = require("path");
 const mongoose = require("mongoose");
 const Worker = require("../models/Worker.js");
 const Rating = require("../models/Ratings.js");
+const multer = require("multer");
+const path = require("path");
+const upload = require('../middleware/uploadMiddleware');
+
+// ... بقية الدوال كما هي ...
+// الحصول على جميع العمال المقبولين
+const getAcceptedWorkers = async (req, res) => {
+  try {
+    const workers = await Worker.find({ isAccepted: true });
+    res.json({ workers });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// الحصول على عامل معين
+const getWorker = async (req, res) => {
+  try {
+    const worker = await Worker.findById(req.params.id);
+    if (!worker) {
+      return res.status(404).json({ message: 'العامل غير موجود' });
+    }
+    res.json(worker);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+
+
 
 // 🔹 إعداد Multer لتخزين الصور
 const storage = multer.diskStorage({
@@ -192,6 +220,8 @@ const getWorkerById = async (req, res) => {
 
 // تصدير الدوال
 module.exports = {
+  getAcceptedWorkers,
+  getWorker,
   registerWorker,
   loginWorker,
   getWorkers,
@@ -199,7 +229,7 @@ module.exports = {
   acceptWorker,
   rejectWorker,
   getWorkerById,
-  upload 
+  upload
 };
 
 
@@ -247,63 +277,57 @@ module.exports = {
 
 
 
-// const Worker = require("../models/Worker");
 // const bcrypt = require("bcryptjs");
 // const jwt = require("jsonwebtoken");
 // const multer = require("multer");
 // const path = require("path");
 // const mongoose = require("mongoose");
-// const Rating = require("../models/Ratings");
+// const nodemailer = require("nodemailer");
+// const Worker = require("../models/Worker.js");
+// const Rating = require("../models/Ratings.js");
 
-// // 🔹 Paramétrage de Multer pour le stockage des images
+// // إعداد Multer
 // const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "uploads/"); // Dossier de stockage des images
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, Date.now() + path.extname(file.originalname)); // Renommer les fichiers avec un timestamp
-//   },
+//   destination: (req, file, cb) => cb(null, "uploads/"),
+//   filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname)),
 // });
-
-// // 🔹 Filtre pour n'accepter que des images
 // const fileFilter = (req, file, cb) => {
 //   const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
-//   if (allowedTypes.includes(file.mimetype)) {
-//     cb(null, true);
-//   } else {
-//     cb(new Error("❌ Seuls les fichiers JPG, PNG sont autorisés"), false);
-//   }
+//   cb(null, allowedTypes.includes(file.mimetype));
 // };
-
 // const upload = multer({
 //   storage,
 //   fileFilter,
-//   limits: { fileSize: 5 * 1024 * 1024 }, // Taille maximale : 5 MB
+//   limits: { fileSize: 5 * 1024 * 1024 },
 // });
 
-// // 🔹 Inscription d'un nouveau travailleur
+// // إعداد البريد
+// const transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: process.env.EMAIL_USER,
+//     pass: process.env.EMAIL_PASS,
+//   },
+// });
+
+// // تسجيل عامل
 // const registerWorker = async (req, res) => {
 //   const { name, email, password, phone, city, skill } = req.body;
 
-//   // ✅ Vérifier si l'image a bien été téléchargée
 //   if (!req.file) {
-//     return res.status(400).json({ success: false, message: "❌ Veuillez télécharger l'image de la carte d'identité" });
+//     return res.status(400).json({ success: false, message: "❌ يرجى رفع صورة البطاقة الوطنية" });
 //   }
 
-//   const nationalIdImage = req.file.path.replace(path.sep, "/"); // Remplacer les backslashes par des slashes
+//   const nationalIdImage = req.file.path.replace(/\\/g, "/");
 
 //   try {
-//     // ✅ Vérifier si le travailleur existe déjà
 //     const existingWorker = await Worker.findOne({ email });
 //     if (existingWorker) {
-//       return res.status(400).json({ success: false, message: "❌ Cet e-mail est déjà utilisé, veuillez en utiliser un autre" });
+//       return res.status(400).json({ success: false, message: "❌ البريد مستخدم من قبل" });
 //     }
 
-//     // ✅ Hash du mot de passe
-//     const salt = await bcrypt.genSalt(10);
-//     const hashedPassword = await bcrypt.hash(password, salt);
+//     const hashedPassword = await bcrypt.hash(password, 10);
 
-//     // ✅ Créer un nouveau travailleur
 //     const newWorker = new Worker({
 //       name,
 //       email,
@@ -315,64 +339,39 @@ module.exports = {
 //     });
 
 //     await newWorker.save();
-//     return res.status(201).json({ success: true, message: "✅ Travailleur enregistré avec succès" });
+//     return res.status(201).json({ success: true, message: "✅ تم تسجيل العامل بنجاح" });
 //   } catch (error) {
-//     return res.status(500).json({ success: false, message: "❌ Une erreur s'est produite sur le serveur" });
+//     return res.status(500).json({ success: false, message: "❌ حدث خطأ في السيرفر" });
 //   }
 // };
 
-// // 🔹 Login d'un travailleur
+// // تسجيل الدخول
 // const loginWorker = async (req, res) => {
 //   const { email, password } = req.body;
 
 //   try {
 //     const worker = await Worker.findOne({ email });
 //     if (!worker) {
-//       return res.status(400).json({ success: false, message: "❌ L'e-mail n'existe pas" });
+//       return res.status(400).json({ success: false, message: "❌ البريد غير موجود" });
 //     }
 
 //     const isMatch = await bcrypt.compare(password, worker.password);
 //     if (!isMatch) {
-//       return res.status(400).json({ success: false, message: "❌ Le mot de passe est incorrect" });
+//       return res.status(400).json({ success: false, message: "❌ كلمة المرور خاطئة" });
 //     }
 
-//     // ✅ Générer le token JWT
-//     const token = jwt.sign({ id: worker._id }, "secret", { expiresIn: "7d" });
+//     if (!worker.emailVerified) {
+//       return res.status(403).json({ success: false, message: "❌ لم يتم التحقق من البريد الإلكتروني" });
+//     }
 
+//     const token = jwt.sign({ id: worker._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 //     return res.status(200).json({ success: true, token, username: worker.name });
 //   } catch (error) {
-//     return res.status(500).json({ success: false, message: "❌ Une erreur s'est produite sur le serveur" });
+//     return res.status(500).json({ success: false, message: "❌ حدث خطأ في السيرفر" });
 //   }
 // };
 
-// // 🔹 Récupérer tous les travailleurs sans afficher les mots de passe
-// const getWorkers = async (req, res) => {
-//   try {
-//     const workers = await Worker.find().select("-password"); // ❌ Exclure les mots de passe
-//     res.status(200).json({ success: true, workers });
-//   } catch (error) {
-//     res.status(500).json({ success: false, message: "❌ Erreur lors de la récupération des travailleurs", error });
-//   }
-// };
-
-// // 🔹 Supprimer un travailleur
-// const deleteWorker = async (req, res) => {
-//   try {
-//     const workerId = req.params.id;
-
-//     const worker = await Worker.findById(workerId);
-//     if (!worker) {
-//       return res.status(404).json({ success: false, message: "❌ Travailleur non trouvé" });
-//     }
-
-//     await Worker.findByIdAndDelete(workerId);
-//     res.status(200).json({ success: true, message: "✅ Travailleur supprimé avec succès" });
-//   } catch (error) {
-//     res.status(500).json({ success: false, message: "❌ Une erreur est survenue lors de la suppression" });
-//   }
-// };
-
-// // 🔹 Accepter un travailleur
+// // قبول عامل
 // const acceptWorker = async (req, res) => {
 //   try {
 //     const workerId = req.params.id;
@@ -382,61 +381,181 @@ module.exports = {
 //     }
 
 //     worker.isAccepted = true;
+
+//     const verificationLink = `${process.env.FRONTEND_URL}/verify-email/${worker._id}`;
+
+//     const mailOptions = {
+//       from: process.env.EMAIL_USER,
+//       to: worker.email,
+//       subject: "تحقق من بريدك الإلكتروني",
+//       text: `مرحبًا ${worker.name},\n\nيرجى النقر على الرابط التالي للتحقق من بريدك الإلكتروني: \n${verificationLink}`,
+//     };
+
+//     await transporter.sendMail(mailOptions);
 //     await worker.save();
-//     res.status(200).json({ success: true, message: "✅ تم قبول العامل بنجاح" });
+
+//     res.status(200).json({ success: true, message: "✅ تم قبول العامل بنجاح، تم إرسال رابط التحقق." });
 //   } catch (error) {
-//     console.error("❌ Error in acceptWorker:", error);  // ✅ سجل الخطأ في الكونسول
-//     res.status(500).json({ success: false, message: "❌ حدث خطأ أثناء تحديث حالة العامل", error: error.message });
+//     console.error("❌ Error in acceptWorker:", error);
+//     res.status(500).json({ success: false, message: "❌ حدث خطأ أثناء التحديث" });
 //   }
 // };
 
-// // 🔹 رفض عامل
-// const rejectWorker = async (req, res) => {
+// // باقي الدوال بدون تغيير جوهري:
+// const getWorkers = async (req, res) => {
 //   try {
-//     const workerId = req.params.id;
-//     const worker = await Worker.findById(workerId);
+//     const workers = await Worker.find().select("-password").populate("ratings", "score comment user");
+//     const formattedWorkers = workers.map(worker => ({
+//       _id: worker._id,
+//       name: worker.name,
+//       email: worker.email,
+//       phone: worker.phone,
+//       city: worker.city,
+//       skill: worker.skill,
+//       nationalIdImage: worker.nationalIdImage,
+//       isAccepted: worker.isAccepted,
+//       ordersCount: worker.ordersCount,
+//       ratingsCount: worker.ratingsCount,
+//       averageRating: worker.averageRating,
+//       ratings: worker.ratings,
+//     }));
+//     res.status(200).json({ success: true, workers: formattedWorkers });
+//   } catch (error) {
+//     console.error("Error fetching workers:", error);
+//     res.status(500).json({ success: false, message: "❌ خطأ في تحميل العمال" });
+//   }
+// };
+
+// const deleteWorker = async (req, res) => {
+//   try {
+//     const worker = await Worker.findById(req.params.id);
 //     if (!worker) {
 //       return res.status(404).json({ success: false, message: "❌ العامل غير موجود" });
 //     }
-
-//     worker.isAccepted = false;
-//     await worker.save();
-//     res.status(200).json({ success: true, message: "✅ تم رفض العامل بنجاح" });
+//     await Worker.findByIdAndDelete(req.params.id);
+//     res.status(200).json({ success: true, message: "✅ تم حذف العامل" });
 //   } catch (error) {
-//     console.error("❌ Error in rejectWorker:", error);  // ✅ سجل الخطأ في الكونسول
-//     res.status(500).json({ success: false, message: "❌ حدث خطأ أثناء تحديث حالة العامل", error: error.message });
+//     res.status(500).json({ success: false, message: "❌ حدث خطأ أثناء الحذف" });
 //   }
 // };
 
-// // 🔹 Récupérer un travailleur par ID
+// const rejectWorker = async (req, res) => {
+//   try {
+//     const worker = await Worker.findById(req.params.id);
+//     if (!worker) {
+//       return res.status(404).json({ success: false, message: "❌ العامل غير موجود" });
+//     }
+//     worker.isAccepted = false;
+//     await worker.save();
+//     res.status(200).json({ success: true, message: "✅ تم رفض العامل" });
+//   } catch (error) {
+//     console.error("❌ Error in rejectWorker:", error);
+//     res.status(500).json({ success: false, message: "❌ حدث خطأ أثناء التحديث" });
+//   }
+// };
+
 // const getWorkerById = async (req, res) => {
 //   try {
 //     const workerId = req.params.id;
-//     console.log("محاولة جلب العامل بالـ ID:", workerId); // سجل الـ ID
 //     if (!mongoose.Types.ObjectId.isValid(workerId)) {
-//       return res.status(400).json({ message: 'ID غير صالح' });
+//       return res.status(400).json({ message: '❌ ID غير صالح' });
 //     }
 
 //     const worker = await Worker.findById(workerId);
 //     if (!worker) {
-//       return res.status(404).json({ message: 'العامل غير موجود' });
+//       return res.status(404).json({ message: '❌ العامل غير موجود' });
 //     }
 //     res.status(200).json({ worker });
 //   } catch (error) {
-//     console.error("حدث خطأ أثناء جلب بيانات العامل:", error);
-//     res.status(500).json({ message: 'حدث خطأ أثناء جلب بيانات العامل' });
+//     console.error("❌ خطأ أثناء جلب بيانات العامل:", error);
+//     res.status(500).json({ message: '❌ خطأ أثناء جلب بيانات العامل' });
 //   }
 // };
 
-// // 🔹 Exporter les fonctions
-// module.exports = { 
-//   registerWorker, 
-//   loginWorker, 
-//   getWorkers, 
-//   deleteWorker, 
-//   acceptWorker, 
-//   rejectWorker, 
-//   getWorkerById, 
-//   upload 
+// // التحقق من البريد الإلكتروني عبر الرابط
+// exports.verifyEmail = async (req, res) => {
+//   try {
+//     const workerId = req.params.id;
+//     const worker = await Worker.findById(workerId);
+
+//     if (!worker) {
+//       return res.status(404).json({ message: "العامل غير موجود." });
+//     }
+
+//     // مثلاً نطلب منه إدخال البريد وكلمة السر مرة أخرى
+//     const { email, password } = req.body;
+
+//     if (worker.email !== email) {
+//       return res.status(401).json({ message: "البريد الإلكتروني غير صحيح." });
+//     }
+
+//     const isMatch = await bcrypt.compare(password, worker.password);
+//     if (!isMatch) {
+//       return res.status(401).json({ message: "كلمة المرور غير صحيحة." });
+//     }
+
+//     // السماح له بإكمال الملف الشخصي
+//     res.status(200).json({
+//       message: "تم التحقق بنجاح.",
+//       name: worker.fullName,
+//       city: worker.city,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ message: "حدث خطأ أثناء التحقق.", error });
+//   }
 // };
 
+// exports.verifyEmail = async (req, res) => {
+//   try {
+//     const workerId = req.params.id;
+//     const { email, password } = req.body;
+
+//     // تحقق من وجود العامل بهذا الـ ID
+//     const worker = await Worker.findById(workerId);
+//     if (!worker) {
+//       return res.status(404).json({ message: "العامل غير موجود" });
+//     }
+
+//     // تحقق من صحة البريد الإلكتروني وكلمة المرور
+//     if (worker.email !== email || worker.password !== password) {
+//       return res.status(401).json({ message: "بيانات الدخول غير صحيحة" });
+//     }
+
+//     // إرسال معلومات معينة فقط
+//     res.status(200).json({
+//       id: worker._id,
+//       fullName: worker.fullName,
+//       city: worker.city,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ message: "حدث خطأ ما", error });
+//   }
+// };
+
+
+// const verifyEmail = async (req, res) => {
+//   const { id } = req.params;
+//   try {
+//     // مثال على تحديث الحقل isVerified
+//     const worker = await Worker.findByIdAndUpdate(id, { isVerified: true }, { new: true });
+//     if (!worker) {
+//       return res.status(404).json({ message: "العامل غير موجود" });
+//     }
+//     res.status(200).json({ message: "تم تأكيد البريد الإلكتروني", worker });
+//   } catch (error) {
+//     res.status(500).json({ message: "حدث خطأ أثناء تأكيد البريد", error: error.message });
+//   }
+// };
+
+
+// module.exports = {
+//   upload, // ✅ أضف هذه
+//   registerWorker,
+//   loginWorker,
+//   getWorkers,
+//   deleteWorker,
+//   acceptWorker,
+//   rejectWorker,
+//   getWorkerById,
+//   verifyEmail
+// };
