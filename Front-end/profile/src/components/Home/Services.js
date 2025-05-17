@@ -376,7 +376,7 @@ function BusinessServices() {
               textShadow: "0 0 10px rgba(0, 0, 0, 0.05)"
             }}
           >
-            حلولنا الكهربائية الاحترافية
+            حلولنا بالاحترافية
           </motion.h2>
           
           <motion.p
@@ -385,7 +385,7 @@ function BusinessServices() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            خدمات كهربائية متكاملة بمعايير عالمية مع ضمان الجودة والسلامة
+            خدمات متكاملة بمعايير عالمية مع ضمان الجودة والسلامة
           </motion.p>
           
           <motion.div 

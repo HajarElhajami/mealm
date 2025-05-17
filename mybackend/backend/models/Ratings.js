@@ -14,26 +14,56 @@
 
 
 
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+
+// const ratingSchema = new mongoose.Schema({
+//   workerId: {
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: 'Worker',
+//     required: true
+//   },
+//   rating: {
+//     type: Number,
+//     default: 0
+//   },
+//   status: {
+//     type: String,
+//     default: 'مقبول'
+//   },
+//   createdAt: {
+//     type: Date,
+//     default: Date.now
+//   }
+// });
+
+// module.exports = mongoose.model('Rating', ratingSchema);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const mongoose = require("mongoose");
 
 const ratingSchema = new mongoose.Schema({
-  workerId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Worker',
-    required: true
-  },
-  rating: {
-    type: Number,
-    default: 0
-  },
-  status: {
-    type: String,
-    default: 'مقبول'
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-});
+  score: { type: Number, required: true },
+  comment: { type: String },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // إذا كان لديك نموذج مستخدم
+  worker: { type: mongoose.Schema.Types.ObjectId, ref: 'Worker' } // ربط بالعامل
+}, { timestamps: true });
 
-module.exports = mongoose.model('Rating', ratingSchema);
+module.exports = mongoose.model("Ratings", ratingSchema);

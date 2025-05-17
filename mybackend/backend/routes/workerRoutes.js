@@ -68,31 +68,191 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const express = require("express");
-const { 
-  registerWorker, 
-  loginWorker, 
-  getWorkers, 
-  deleteWorker, 
-  acceptWorker, 
-  rejectWorker, 
-  getWorkerById, 
-  upload 
-} = require("../controllers/workerController");
+const {
+  registerWorker,
+  loginWorker,
+  getWorkers, // استخدم getWorkers بدلاً من getAcceptedWorkers
+  deleteWorker,
+  acceptWorker,
+  rejectWorker,
+  getWorkerById,
+  upload
+} = require('../controllers/workerController');
+const authWorker = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
+// تسجيل عامل جديد
 router.post("/workers", upload.single("nationalIdImage"), registerWorker);
-router.post("/worker", loginWorker); // هنا تم التعديل من workerController.loginWorker إلى loginWorker مباشرة
+
+// تسجيل الدخول
+router.post("/login", loginWorker);
+
+// جلب جميع العمال (استبدل getAcceptedWorkers بـ getWorkers)
 router.get("/workers", getWorkers);
+
+// حذف عامل
 router.delete("/workers/:id", deleteWorker);
 
+// جلب عامل معين
 router.get("/workers/:id", getWorkerById);
 
-// ➕ المسارات الجديدة:
+// قبول عامل
 router.patch("/workers/accept/:id", acceptWorker);
+
+// رفض عامل
 router.patch("/workers/reject/:id", rejectWorker);
 
-router.post('/login', loginWorker); // هنا أيضًا التعديل نفسه
+// مسارات تحتاج مصادقة
+router.get("/protected-route/:id", authWorker, getWorkerById);
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const express = require("express");
+// const {
+//   registerWorker,
+//   loginWorker,
+//   getWorkers,
+//   deleteWorker,
+//   acceptWorker,
+//   rejectWorker,
+//   getWorkerById,
+//   upload
+// } = require('../controllers/workerController');
+// const authWorker = require('../middleware/authMiddleware');
+
+// const router = express.Router();
+
+// // تسجيل عامل جديد
+// router.post("/workers", upload.single("nationalIdImage"), registerWorker);
+
+// // تسجيل الدخول
+// router.post("/login", loginWorker); // تم التعديل هنا
+
+// // جلب جميع العمال
+// router.get("/workers", workerController.getAcceptedWorkers,);
+
+// // حذف عامل
+// router.delete("/workers/:id", deleteWorker);
+
+// // جلب عامل معين
+// router.get("/workers/:id", getWorkerById);
+
+// // قبول عامل
+// router.patch("/workers/accept/:id", acceptWorker);
+
+// // رفض عامل
+// router.patch("/workers/reject/:id", rejectWorker);
+
+// // مسارات تحتاج مصادقة
+// router.get("/protected-route/:id", authWorker, getWorkerById);
+
+// module.exports = router;

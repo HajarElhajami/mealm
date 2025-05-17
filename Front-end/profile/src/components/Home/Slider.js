@@ -204,8 +204,8 @@ const Business = () => {
             className="text-xl text-gray-600 max-w-2xl mx-auto"
             whileHover={{ x: 5 }}
           >
-            اكتشف أحدث مشاريعنا في التركيبات الكهربائية
-          </motion.p>
+            تعرف على جودة خدماتنا من خلال مشاريعنا الأخيرة       
+         </motion.p>
         </div>
 
         <motion.div
