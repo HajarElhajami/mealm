@@ -73,10 +73,10 @@ function Home() {
       <Section workerId={workerId} />
       
       {/* نعرض باقي المكونات في جميع الحالات */}
-      <Services />
-      <Business />
-      <Ratings />
-      <Slider />
+      {/* <Services /> */}
+      <Business workerId={workerId}/>
+      <Ratings  workerId={workerId}/>
+      {/* <Slider /> */}
     </div>
   );
 }
