@@ -66,7 +66,7 @@ function Ratings3D() {
   };
 
   return (
-    <div className="relative py-16 px-4 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+    <div className="relative py-16 px-4 overflow-hidden ">
       {/* عناصر زخرفية خلفية */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-64 h-64 bg-teal-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>

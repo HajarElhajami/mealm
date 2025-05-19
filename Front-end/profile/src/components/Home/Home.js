@@ -76,7 +76,7 @@ function Home() {
       <TrustPage />
       <Business workerId={workerId}/>
       <Ratings  workerId={workerId}/>
-      {/* <Slider /> */}
+      <Slider />
     </div>
   );
 }
