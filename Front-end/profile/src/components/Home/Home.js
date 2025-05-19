@@ -59,7 +59,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Section from "./Section";
-import Services from './Services';
+import TrustPage from './TrustPage';
 import Business from './Business';
 import Ratings from "./Ratings";
 import Slider from "./Slider";
@@ -73,7 +73,7 @@ function Home() {
       <Section workerId={workerId} />
       
       {/* نعرض باقي المكونات في جميع الحالات */}
-      {/* <Services /> */}
+      <TrustPage />
       <Business workerId={workerId}/>
       <Ratings  workerId={workerId}/>
       {/* <Slider /> */}

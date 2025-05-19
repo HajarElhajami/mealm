@@ -53,24 +53,32 @@ import Layout from "./Layout";
 import Home from "./Home/Home";
 import SectionEdit from "./Settings/SectionEdit";
 import Login from './Home/Login';
+import WorksGallery  from './Pages/WorksGallery'
+import Layoute1 from './Layoute1'
+
+
+
 
 function Allpages() {
   return (
     <Router>
       <Routes>
-        {/* المسار الرئيسي */}
+
+      <Route path="/l1" element={<Layoute1 />} >
+          <Route path="Login" element={<Login />} />
+
+           
+
+       </Route> 
+
         <Route path="/" element={<Layout />}>
-          {/* الصفحة الرئيسية */}
           <Route index element={<Home />} />
-          
-          {/* صفحة العامل (سيتم عرضها ضمن Home) */}
           <Route path="/:workerId" element={<Home />} />
-          
-          {/* صفحة التعديل */}
           <Route path="/:workerId/edit" element={<SectionEdit />} />
-          
-          {/* صفحة تسجيل الدخول */}
-          <Route path="/login" element={<Login />} />
+          <Route path="/worksGallery " element={<WorksGallery  />} />
+
+
+          {/* <Route path="/login" element={<Login />} /> */}
         </Route>
       </Routes>
     </Router>
