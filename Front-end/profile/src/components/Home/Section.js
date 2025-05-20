@@ -258,6 +258,8 @@ const Section = ({ workerId: propWorkerId }) => {
                           <FaCheckCircle className="text-white text-xl" />
                         </div>
                       </motion.div>
+
+                      
                       
                       <h3 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#0f4c5c] to-[#5f0f40]">
                         {skill}

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-three/drei": "^10.0.8",
+    "@react-three/fiber": "^9.1.2",
     "axios": "^1.8.4",
     "chroma-js": "^3.1.2",
     "cra-template-pwa": "2.0.0",

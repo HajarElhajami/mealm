@@ -407,7 +407,7 @@ const PartnerCard = ({ partner, index }) => {
 
 export default function PremiumPartnersSection() {
   return (
-    <section className="relative py-20 bg-white">
+    <section className="relative py-8 bg-white">
       {/* عناصر زخرفية ثلاثية الأبعاد */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
