@@ -55,6 +55,7 @@ import SectionEdit from "./Settings/SectionEdit";
 import Login from './Home/Login';
 import WorksGallery  from './Pages/WorksGallery'
 import Layoute1 from './Layoute1'
+import Contact from './Pages/Contact'
 
 
 
@@ -66,6 +67,7 @@ function Allpages() {
 
       <Route path="/l1" element={<Layoute1 />} >
           <Route path="Login" element={<Login />} />
+          <Route path="Contact " element={<Contact  />} />
 
            
 
@@ -76,6 +78,7 @@ function Allpages() {
           <Route path="/:workerId" element={<Home />} />
           <Route path="/:workerId/edit" element={<SectionEdit />} />
           <Route path="/worksGallery " element={<WorksGallery  />} />
+          {/* <Route path="/contact " element={<Contact  />} /> */}
 
 
           {/* <Route path="/login" element={<Login />} /> */}

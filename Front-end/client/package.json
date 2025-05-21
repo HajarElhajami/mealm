@@ -5,10 +5,10 @@
   "dependencies": {
     "@react-three/drei": "^10.0.8",
     "@react-three/fiber": "^9.1.2",
-    "axios": "^1.8.4",
+    "axios": "^1.9.0",
     "chroma-js": "^3.1.2",
     "cra-template-pwa": "2.0.0",
-    "framer-motion": "^12.4.7",
+    "framer-motion": "^12.12.1",
     "gsap": "^3.12.7",
     "lucide-react": "^0.475.0",
     "react": "^19.0.0",

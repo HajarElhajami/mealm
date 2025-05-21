@@ -17,7 +17,7 @@ import Rojester from './Pages/Login/Rogester'
 import Partnership from './Pages/Partnership/PagesPartnership'
 import WorkersPage from './Pages/WorkersPage/WorkersPage'
 import RequestForm from './Pages/RequestForm/RequestForm'
-
+import RightsPage from './Pages/RightsPage/RightsPage'
 
 
 function Allpages() {
@@ -31,7 +31,8 @@ function Allpages() {
            <Route path="rogester" element={<Rojester />} />
            <Route path="partnership" element={<Partnership />} />
            <Route path="request" element={<RequestForm />} />
-           
+           <Route path="RightsPage" element={<RightsPage />} />
+
 
            </Route> 
 

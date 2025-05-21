@@ -172,7 +172,7 @@ const Section = ({ workerId: propWorkerId }) => {
 {isAdmin && (
   <Link 
   to={`/${workerId}/edit`}
-  className="absolute right-[1200%] -top-[70%] bg-[#0f4c5c] text-white p-2 rounded-full hover:bg-[#5f0f40] transition-all"
+  className="fixed md:absolute right-4 md:right-[1200%] top-20 md:-top-[70%] bg-[#0f4c5c] text-white p-2 rounded-full hover:bg-[#5f0f40] transition-all z-50"
   >
     <FaEdit size={18} />
   </Link>
@@ -258,8 +258,6 @@ const Section = ({ workerId: propWorkerId }) => {
                           <FaCheckCircle className="text-white text-xl" />
                         </div>
                       </motion.div>
-
-                      
                       
                       <h3 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#0f4c5c] to-[#5f0f40]">
                         {skill}

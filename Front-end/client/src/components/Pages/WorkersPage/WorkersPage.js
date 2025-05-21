@@ -1,43 +1,54 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Float, Text3D } from "@react-three/drei";
-import * as THREE from "three";
+import img38 from "../../Image/38.png";
 
-const WorkerCard3D = ({ worker }) => {
+const WorkerCard = ({ worker }) => {
+  // قيم افتراضية آمنة
+  const {
+    image = "/default-worker.png",
+    name = "عامل غير معروف",
+    rating = 0,
+    // skill = "المهنة",
+    ordersCount = 0
+  } = worker || {};
+
   return (
     <motion.div
-      className="relative h-80 w-64 perspective-1000"
+      className="relative h-80 w-64 group"
       whileHover={{
         y: -20,
-        rotateY: 10,
       }}
       transition={{ duration: 0.5 }}
     >
       {/* الوجه الأمامي */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#4FD1C5] to-[#2C7A7B] rounded-2xl p-6 shadow-2xl flex flex-col items-center justify-center transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#4FD1C5] to-[#2C7A7B] rounded-2xl p-6 shadow-2xl flex flex-col items-center justify-center">
         <div className="w-32 h-32 rounded-full bg-white/20 backdrop-blur-md border-4 border-white/30 mb-4 flex items-center justify-center overflow-hidden">
           <img 
-            src={worker.image || "/default-worker.png"} 
-            alt={worker.name}
+            src={img38} 
+            alt={name}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.src = "/default-worker.png";
+            }}
           />
         </div>
-        <h3 className="text-xl font-bold text-white">{worker.name}</h3>
+        <h3 className="text-xl font-bold text-white">{name}</h3>
+        {/* <p className="text-white/80 text-sm">{skill}</p> */}
         <div className="flex mt-2">
           {[...Array(5)].map((_, i) => (
-            <StarIcon key={i} filled={i < Math.floor(worker.rating)} />
+            <StarIcon key={i} filled={i < Math.floor(Number(rating))} />
           ))}
         </div>
       </div>
       
       {/* الوجه الخلفي */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#2C7A7B] to-[#4FD1C5] rounded-2xl p-6 shadow-2xl flex flex-col items-center justify-center transform-style-preserve-3d transition-all duration-500 rotate-y-180 backface-hidden group-hover:rotate-y-0">
-        <h3 className="text-xl font-bold text-white mb-2">{worker.name}</h3>
-        <p className="text-white/90 text-sm">التخصص: {worker.specialty}</p>
-        <p className="text-white/90 text-sm mt-2">الطلبات: {worker.ordersCount}</p>
-        <p className="text-white/90 text-sm">التقييم: {worker.rating.toFixed(1)}</p>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#2C7A7B] to-[#4FD1C5] rounded-2xl p-6 shadow-2xl flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <h3 className="text-xl font-bold text-white mb-2">{name}</h3>
+        {/* <p className="text-white/90 text-sm">المهنة: {skill}</p> */}
+        <p className="text-white/90 text-sm mt-2">الطلبات: {ordersCount}</p>
+        <p className="text-white/90 text-sm">التقييم: {Number(rating).toFixed(1)}</p>
         <div className="absolute bottom-4 left-0 right-0 flex justify-center">
           <button className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm hover:bg-white/30 transition">
             عرض الملف
@@ -58,7 +69,7 @@ const StarIcon = ({ filled }) => (
   </svg>
 );
 
-const WorkersPage3D = () => {
+const WorkersPage = () => {
   const [workers, setWorkers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -66,12 +77,30 @@ const WorkersPage3D = () => {
   useEffect(() => {
     const fetchWorkers = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5000/api/worker/workers");
-        const acceptedWorkers = data.workers.filter(w => w.isAccepted);
+        const response = await axios.get("http://localhost:5000/api/worker/workers", {
+          timeout: 5000
+        });
+        
+        if (!response.data.workers) {
+          throw new Error("بيانات العمال غير متوفرة");
+        }
+
+        const acceptedWorkers = response.data.workers
+          .filter(w => w?.isAccepted)
+          .map(worker => ({
+            _id: worker._id || Math.random().toString(),
+            name: worker.name || "عامل غير معروف",
+            image: worker.image || "/default-worker.png",
+            rating: Number(worker.rating) || 0,
+            // skill: worker.skill || "المهنة", // تم التصحيح هنا من data.worker.skill إلى worker.skill
+            ordersCount: Number(worker.ordersCount) || 0,
+            isAccepted: !!worker.isAccepted
+          }));
+
         setWorkers(acceptedWorkers);
       } catch (err) {
-        setError("حدث خطأ أثناء جلب العمال.");
-        console.error(err);
+        setError(err.message || "حدث خطأ أثناء جلب بيانات العمال");
+        console.error("حدث خطأ:", err);
       } finally {
         setLoading(false);
       }
@@ -81,29 +110,7 @@ const WorkersPage3D = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen p-8 bg-gradient-to-b from-[#E6FFFA] to-[#B2F5EA] overflow-hidden">
-      {/* تأثيرات ثلاثية الأبعاد في الخلفية */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} />
-          <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-            <Text3D
-              font="/fonts/helvetiker_regular.typeface.json"
-              size={1.5}
-              height={0.2}
-              curveSegments={12}
-              position={[-5, 2, 0]}
-              rotation={[0, 0.3, 0]}
-            >
-              العمال
-              <meshStandardMaterial color="#4FD1C5" metalness={0.3} roughness={0.1} />
-            </Text3D>
-          </Float>
-          <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-        </Canvas>
-      </div>
-
+    <section className="relative min-h-screen p-8 bg-gray-50">
       <div className="relative z-10 max-w-7xl mx-auto">
         <motion.h1 
           initial={{ opacity: 0, y: -50 }}
@@ -117,58 +124,94 @@ const WorkersPage3D = () => {
         </motion.h1>
 
         {loading ? (
-          <motion.p 
+          <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center text-[#6BA89D] text-xl"
+            className="text-center"
           >
-            جارٍ تحميل البيانات...
-          </motion.p>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#2C7A7B] mb-2"></div>
+            <p className="text-[#6BA89D] text-xl">جارٍ تحميل البيانات...</p>
+          </motion.div>
         ) : error ? (
-          <motion.p 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center text-red-500 text-xl"
+            className="text-center"
           >
-            {error}
-          </motion.p>
+            <p className="text-red-500 text-xl mb-4">{error}</p>
+            <button 
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 bg-[#2C7A7B] text-white rounded-lg hover:bg-[#234B44] transition"
+            >
+              إعادة المحاولة
+            </button>
+          </motion.div>
         ) : workers.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
             {workers.map((worker) => (
-              <WorkerCard3D key={worker._id} worker={worker} />
+              <WorkerCard key={worker._id} worker={worker} />
             ))}
           </div>
         ) : (
-          <motion.p 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center text-[#6BA89D] text-xl"
+            className="text-center"
           >
-            لا يوجد عمال مقبولين حالياً.
-          </motion.p>
+            <p className="text-[#6BA89D] text-xl mb-4">لا يوجد عمال مقبولين حالياً.</p>
+            <button 
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 bg-[#2C7A7B] text-white rounded-lg hover:bg-[#234B44] transition"
+            >
+              تحديث الصفحة
+            </button>
+          </motion.div>
         )}
       </div>
-
-      {/* تأثيرات CSS */}
-      <style jsx global>{`
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        .transform-style-preserve-3d {
-          transform-style: preserve-3d;
-        }
-        .backface-hidden {
-          backface-visibility: hidden;
-        }
-        .rotate-y-180 {
-          transform: rotateY(180deg);
-        }
-      `}</style>
     </section>
   );
 };
 
-export default WorkersPage3D;
+export default WorkersPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
